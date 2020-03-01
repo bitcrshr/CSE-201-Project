@@ -15,7 +15,7 @@ import java.awt.Insets;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 
-public class testerofswing {
+public class loginPage {
 
 	private JFrame frame;
 
@@ -26,7 +26,7 @@ public class testerofswing {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					testerofswing window = new testerofswing();
+					loginPage window = new loginPage();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +38,7 @@ public class testerofswing {
 	/**
 	 * Create the application.
 	 */
-	public testerofswing() {
+	public loginPage() {
 		initialize();
 	}
 
