@@ -1,20 +1,19 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-
 import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Font;
-import java.awt.Color;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
-public class Profile {
-
-	private JFrame frame;
+public class Profile extends JFrame {
 
 	/**
 	 * Launch the application.
@@ -23,8 +22,8 @@ public class Profile {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Profile window = new Profile();
-					window.frame.setVisible(true);
+					Profile frame = new Profile();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -33,24 +32,19 @@ public class Profile {
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public Profile() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 700, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 700, 700);
+		//contentPane = new JPanel();
+		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		//contentPane.setLayout(new BorderLayout(0, 0));
+		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(12, 13, 658, 137);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{142, 107, 0, 0, 0, 0, 112, 117, 0};
 		gbl_panel.rowHeights = new int[]{87, 0, 0, 0};
@@ -92,7 +86,7 @@ public class Profile {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(121, 160, 549, 225);
-		frame.getContentPane().add(panel_1);
+		getContentPane().add(panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{138, 145, 138, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0};

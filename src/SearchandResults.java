@@ -17,9 +17,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class SearchandResults {
+public class SearchandResults extends JFrame{
 
-	private JFrame frame;
+	//private JFrame frame;
 	private JTextField textField;
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
@@ -50,7 +50,7 @@ public class SearchandResults {
 			public void run() {
 				try {
 					SearchandResults window = new SearchandResults();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -69,14 +69,13 @@ public class SearchandResults {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 700, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setBounds(100, 100, 700, 700);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 50, 670, 87);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{106, 131, 141, 133, 0, 0};
 		gbl_panel.rowHeights = new int[]{25, 0, 0};
@@ -151,7 +150,7 @@ public class SearchandResults {
 		
 		panel_1 = new JPanel();
 		panel_1.setBounds(0, 149, 670, 414);
-		frame.getContentPane().add(panel_1);
+		getContentPane().add(panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 151, 0, 0, 0};
@@ -251,7 +250,7 @@ public class SearchandResults {
 		
 		panel_2 = new JPanel();
 		panel_2.setBounds(0, 6, 670, 36);
-		frame.getContentPane().add(panel_2);
+		getContentPane().add(panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[]{87, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel_2.rowHeights = new int[]{0, 0};
@@ -269,6 +268,8 @@ public class SearchandResults {
 		JButton btnProfile = new JButton("Profile");
 		btnProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Profile profile = new Profile();
+				profile.setVisible(true);
 			}
 		});
 		GridBagConstraints gbc_btnProfile = new GridBagConstraints();

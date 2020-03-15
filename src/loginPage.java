@@ -15,9 +15,9 @@ import java.awt.Insets;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 
-public class loginPage {
+public class loginPage extends JFrame{
 
-	private JFrame frame;
+	//private JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -27,7 +27,7 @@ public class loginPage {
 			public void run() {
 				try {
 					loginPage window = new loginPage();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,15 +46,14 @@ public class loginPage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.MAGENTA);
-		frame.setBounds(100, 100,  700, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		getContentPane().setBackground(Color.MAGENTA);
+		setBounds(100, 100,  700, 700);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(12, 313, 658, 89);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{241, 99, 0, 75, 0};
 		gbl_panel.rowHeights = new int[]{25, 0, 0};
@@ -65,12 +64,16 @@ public class loginPage {
 		JButton btnNewButton_1 = new JButton("Sign up");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				SearchandResults sandr = new SearchandResults();
+				sandr.setVisible(true);
 			}
 		});
 		
 		JButton btnNewButton = new JButton("Login");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				SearchandResults sandr = new SearchandResults();
+				sandr.setVisible(true);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -88,7 +91,7 @@ public class loginPage {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(12, 209, 658, 103);
 		panel_1.setBorder(null);
-		frame.getContentPane().add(panel_1);
+		getContentPane().add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JLabel lblNewLabel = new JLabel("Bug Free Games");
