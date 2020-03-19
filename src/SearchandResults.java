@@ -16,10 +16,11 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JToolBar;
 
-public class SearchandResults extends JFrame{
+public class SearchandResults {
 
-	//private JFrame frame;
+	private JFrame frame;
 	private JTextField textField;
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
@@ -40,7 +41,9 @@ public class SearchandResults extends JFrame{
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
-	private JPanel panel_2;
+	private JButton btnNewButton_3;
+	private JButton btnNewButton_4;
+	private JButton btnNewButton_5;
 
 	/**
 	 * Launch the application.
@@ -50,7 +53,7 @@ public class SearchandResults extends JFrame{
 			public void run() {
 				try {
 					SearchandResults window = new SearchandResults();
-					window.setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -69,15 +72,19 @@ public class SearchandResults extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 700, 700);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(255, 255, 204));
+		frame.setBounds(100, 100, 700, 700);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 50, 670, 87);
-		getContentPane().add(panel);
+		panel.setBackground(new Color(204, 255, 255));
+		panel.setForeground(new Color(255, 51, 255));
+		panel.setBounds(0, 13, 670, 80);
+		frame.getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{106, 131, 141, 133, 0, 0};
+		gbl_panel.columnWidths = new int[]{0, 147, 142, 65, 0, 0};
 		gbl_panel.rowHeights = new int[]{25, 0, 0};
 		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
@@ -90,6 +97,7 @@ public class SearchandResults extends JFrame{
 		String s0[] = { "-------","this week", "this month", "this year", "all-time"};
 		
 		lblNewLabel_1 = new JLabel("Platform");
+		lblNewLabel_1.setForeground(new Color(255, 51, 204));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 1;
@@ -97,6 +105,7 @@ public class SearchandResults extends JFrame{
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		lblNewLabel_2 = new JLabel("Genre");
+		lblNewLabel_2.setForeground(new Color(255, 51, 255));
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_2.gridx = 2;
@@ -104,6 +113,7 @@ public class SearchandResults extends JFrame{
 		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		lblNewLabel_3 = new JLabel("Popularity");
+		lblNewLabel_3.setForeground(new Color(255, 51, 255));
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_3.gridx = 3;
@@ -111,6 +121,7 @@ public class SearchandResults extends JFrame{
 		panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JLabel lblNewLabel = new JLabel("Advanced Search");
+		lblNewLabel.setForeground(new Color(255, 0, 153));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
@@ -149,16 +160,18 @@ public class SearchandResults extends JFrame{
 		textField.setColumns(10);
 		
 		panel_1 = new JPanel();
-		panel_1.setBounds(0, 149, 670, 414);
-		getContentPane().add(panel_1);
+		panel_1.setBackground(new Color(204, 255, 255));
+		panel_1.setBounds(10, 105, 670, 549);
+		frame.getContentPane().add(panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 151, 0, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 151, 0, 0, 0, 0, 0};
 		gbl_panel_1.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		lblNewLabel_4 = new JLabel("Game Name");
+		lblNewLabel_4.setForeground(new Color(255, 51, 255));
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_4.gridx = 0;
@@ -166,6 +179,7 @@ public class SearchandResults extends JFrame{
 		panel_1.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
 		lblNewLabel_5 = new JLabel("Game Name");
+		lblNewLabel_5.setForeground(new Color(255, 51, 255));
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_5.gridx = 1;
@@ -173,6 +187,7 @@ public class SearchandResults extends JFrame{
 		panel_1.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
 		lblNewLabel_6 = new JLabel("Game Name");
+		lblNewLabel_6.setForeground(new Color(255, 51, 255));
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_6.gridx = 2;
@@ -208,6 +223,7 @@ public class SearchandResults extends JFrame{
 		panel_1.add(lblNewLabel_9, gbc_lblNewLabel_9);
 		
 		lblNewLabel_10 = new JLabel("Description");
+		lblNewLabel_10.setForeground(new Color(255, 51, 255));
 		GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
 		gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_10.gridx = 0;
@@ -215,6 +231,7 @@ public class SearchandResults extends JFrame{
 		panel_1.add(lblNewLabel_10, gbc_lblNewLabel_10);
 		
 		lblNewLabel_11 = new JLabel("Description");
+		lblNewLabel_11.setForeground(new Color(255, 51, 255));
 		GridBagConstraints gbc_lblNewLabel_11 = new GridBagConstraints();
 		gbc_lblNewLabel_11.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_11.gridx = 1;
@@ -222,6 +239,7 @@ public class SearchandResults extends JFrame{
 		panel_1.add(lblNewLabel_11, gbc_lblNewLabel_11);
 		
 		lblNewLabel_12 = new JLabel("Description");
+		lblNewLabel_12.setForeground(new Color(255, 51, 255));
 		GridBagConstraints gbc_lblNewLabel_12 = new GridBagConstraints();
 		gbc_lblNewLabel_12.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_12.gridx = 2;
@@ -229,63 +247,49 @@ public class SearchandResults extends JFrame{
 		panel_1.add(lblNewLabel_12, gbc_lblNewLabel_12);
 		
 		btnNewButton = new JButton("Visit this game");
+		btnNewButton.setBackground(new Color(204, 102, 204));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 0;
 		gbc_btnNewButton.gridy = 3;
 		panel_1.add(btnNewButton, gbc_btnNewButton);
 		
 		btnNewButton_1 = new JButton("Visit this game");
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_1.gridx = 1;
 		gbc_btnNewButton_1.gridy = 3;
 		panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
 		
 		btnNewButton_2 = new JButton("Visit this game");
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton_2.gridx = 2;
 		gbc_btnNewButton_2.gridy = 3;
 		panel_1.add(btnNewButton_2, gbc_btnNewButton_2);
 		
-		panel_2 = new JPanel();
-		panel_2.setBounds(0, 6, 670, 36);
-		getContentPane().add(panel_2);
-		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{87, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel_2.rowHeights = new int[]{0, 0};
-		gbl_panel_2.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		panel_2.setLayout(gbl_panel_2);
+		btnNewButton_3 = new JButton("New button");
+		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
+		gbc_btnNewButton_3.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_3.gridx = 0;
+		gbc_btnNewButton_3.gridy = 5;
+		panel_1.add(btnNewButton_3, gbc_btnNewButton_3);
 		
-		JLabel lblUserName = new JLabel("User Name:");
-		GridBagConstraints gbc_lblUserName = new GridBagConstraints();
-		gbc_lblUserName.insets = new Insets(0, 0, 0, 5);
-		gbc_lblUserName.gridx = 2;
-		gbc_lblUserName.gridy = 0;
-		panel_2.add(lblUserName, gbc_lblUserName);
+		btnNewButton_4 = new JButton("New button");
+		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
+		gbc_btnNewButton_4.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_4.gridx = 1;
+		gbc_btnNewButton_4.gridy = 5;
+		panel_1.add(btnNewButton_4, gbc_btnNewButton_4);
 		
-		JButton btnProfile = new JButton("Profile");
-		btnProfile.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Profile profile = new Profile();
-				profile.setVisible(true);
-			}
-		});
-		GridBagConstraints gbc_btnProfile = new GridBagConstraints();
-		gbc_btnProfile.insets = new Insets(0, 0, 0, 5);
-		gbc_btnProfile.gridx = 3;
-		gbc_btnProfile.gridy = 0;
-		panel_2.add(btnProfile, gbc_btnProfile);
-		
-		JLabel lblBugFreeGames = new JLabel("Bug Free Games");
-		lblBugFreeGames.setForeground(new Color(0, 100, 0));
-		lblBugFreeGames.setBackground(Color.GREEN);
-		lblBugFreeGames.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
-		GridBagConstraints gbc_lblBugFreeGames = new GridBagConstraints();
-		gbc_lblBugFreeGames.insets = new Insets(0, 0, 0, 5);
-		gbc_lblBugFreeGames.gridx = 6;
-		gbc_lblBugFreeGames.gridy = 0;
-		panel_2.add(lblBugFreeGames, gbc_lblBugFreeGames);
+		btnNewButton_5 = new JButton("New button");
+		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
+		gbc_btnNewButton_5.gridx = 2;
+		gbc_btnNewButton_5.gridy = 5;
+		panel_1.add(btnNewButton_5, gbc_btnNewButton_5);
 	}
 }

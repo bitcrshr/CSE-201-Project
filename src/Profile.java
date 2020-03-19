@@ -1,19 +1,20 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.Insets;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.awt.GridBagLayout;
+import java.awt.Image;
 
-public class Profile extends JFrame {
+import javax.swing.JLabel;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Font;
+import java.awt.Color;
+
+public class Profile {
+
+	private JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -22,8 +23,8 @@ public class Profile extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Profile frame = new Profile();
-					frame.setVisible(true);
+					Profile window = new Profile();
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -32,19 +33,31 @@ public class Profile extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the application.
 	 */
 	public Profile() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 700);
-		//contentPane = new JPanel();
-		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//contentPane.setLayout(new BorderLayout(0, 0));
-		getContentPane().setLayout(null);
+		initialize();
+	
+	
+
+
+	}
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		ImageIcon image1;
+		image1 = new ImageIcon(getClass().getResource("xxx.jpg"));
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(153, 255, 255));
+		frame.setBounds(100, 100, 700, 700);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setForeground(new Color(255, 255, 102));
 		panel.setBounds(12, 13, 658, 137);
-		getContentPane().add(panel);
+		frame.getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{142, 107, 0, 0, 0, 0, 112, 117, 0};
 		gbl_panel.rowHeights = new int[]{87, 0, 0, 0};
@@ -53,6 +66,7 @@ public class Profile extends JFrame {
 		panel.setLayout(gbl_panel);
 		
 		JLabel lblNewLabel_2 = new JLabel("Profile Picture");
+		lblNewLabel_2.setForeground(new Color(255, 51, 204));
 		lblNewLabel_2.setBackground(Color.YELLOW);
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
@@ -61,6 +75,7 @@ public class Profile extends JFrame {
 		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		JLabel lblNewLabel = new JLabel("User Name:");
+		lblNewLabel.setForeground(new Color(255, 51, 255));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
@@ -69,6 +84,7 @@ public class Profile extends JFrame {
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Charlie");
+		lblNewLabel_1.setForeground(new Color(255, 51, 153));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
@@ -77,6 +93,7 @@ public class Profile extends JFrame {
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("My Collection:");
+		lblNewLabel_3.setForeground(new Color(255, 51, 255));
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
 		gbc_lblNewLabel_3.insets = new Insets(0, 0, 0, 5);
@@ -86,7 +103,7 @@ public class Profile extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(121, 160, 549, 225);
-		getContentPane().add(panel_1);
+		frame.getContentPane().add(panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{138, 145, 138, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0};
@@ -95,6 +112,7 @@ public class Profile extends JFrame {
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel lblNewLabel_4 = new JLabel("Game Title");
+		lblNewLabel_4.setForeground(new Color(51, 51, 255));
 		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
 		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_4.gridx = 0;
@@ -102,6 +120,7 @@ public class Profile extends JFrame {
 		panel_1.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
 		JLabel lblNewLabel_6 = new JLabel("Game Title");
+		lblNewLabel_6.setForeground(new Color(51, 51, 255));
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_6.gridx = 1;
@@ -109,6 +128,7 @@ public class Profile extends JFrame {
 		panel_1.add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
 		JLabel lblNewLabel_5 = new JLabel("Game Title");
+		lblNewLabel_5.setForeground(new Color(102, 51, 255));
 		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
 		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel_5.gridx = 2;
