@@ -19,9 +19,9 @@ import java.awt.Image;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
 
-public class loginPage {
+public class loginPage extends JFrame{
 
-	private JFrame frame;
+	//private JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -31,7 +31,7 @@ public class loginPage {
 			public void run() {
 				try {
 					loginPage window = new loginPage();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,18 +52,16 @@ public class loginPage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		frame = new JFrame();
-		frame.getContentPane().setFont(new Font("Monaco", Font.PLAIN, 13));
-		frame.getContentPane().setBackground(new Color(51, 255, 204));
-		frame.setBounds(100, 100,  700, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		getContentPane().setFont(new Font("Monaco", Font.PLAIN, 13));
+		getContentPane().setBackground(new Color(51, 255, 204));
+		setBounds(100, 100,  700, 700);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.activeCaption);
 		panel.setBounds(12, 527, 658, 89);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{241, 99, 0, 75, 0};
 		gbl_panel.rowHeights = new int[]{25, 0, 0};
@@ -75,6 +73,8 @@ public class loginPage {
 		btnNewButton_1.setForeground(new Color(102, 0, 204));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				SearchandResults s = new SearchandResults();
+				s.setVisible(true);
 			}
 		});
 		
@@ -82,6 +82,8 @@ public class loginPage {
 		btnNewButton.setForeground(new Color(102, 0, 204));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				SearchandResults s = new SearchandResults();
+				s.setVisible(true);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -99,7 +101,7 @@ public class loginPage {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(12, 107, 658, 103);
 		panel_1.setBorder(null);
-		frame.getContentPane().add(panel_1);
+		getContentPane().add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JLabel lblNewLabel = new JLabel("Bug Free Games");
@@ -113,7 +115,7 @@ public class loginPage {
 	
 		JLabel lblNewLabel_1 = new JLabel(icon);
 		lblNewLabel_1.setBounds(0, 0, 700, 700);
-		frame.getContentPane().add(lblNewLabel_1);
+		getContentPane().add(lblNewLabel_1);
 		
 	}
 }
