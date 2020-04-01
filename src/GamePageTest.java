@@ -10,4 +10,8 @@ public class GamePageTest {
 		assertTrue(true);
 	}
 
+	@Test
+	public void testGamePage() {
+		GamePage gp = new GamePage();
+	}
 }
