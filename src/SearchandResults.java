@@ -303,7 +303,7 @@ public class SearchandResults extends JFrame{
 		JButton btnProfile = new JButton("Profile");
 		btnProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Profile profile = new Profile();
+				ProfilePage profile = new ProfilePage();
 				profile.setVisible(true);
 			}
 		});

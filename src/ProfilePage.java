@@ -1,4 +1,4 @@
-\import java.awt.BorderLayout;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -25,7 +25,7 @@ public class ProfilePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Profile frame = new Profile();
+					ProfilePage frame = new ProfilePage();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
