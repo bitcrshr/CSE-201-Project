@@ -1,4 +1,4 @@
-import java.awt.BorderLayout;
+\import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -37,7 +37,7 @@ public class ProfilePage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Profile() {
+	public ProfilePage() {
 		getContentPane().setBackground(new Color(255, 255, 204));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 700);
