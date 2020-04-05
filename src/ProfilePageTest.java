@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class ProfileTest {
+public class ProfilePageTest {
 
 	@Test
 	public void test() {

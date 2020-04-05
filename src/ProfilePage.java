@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Profile extends JFrame {
+public class ProfilePage extends JFrame {
 
 	/**
 	 * Launch the application.
