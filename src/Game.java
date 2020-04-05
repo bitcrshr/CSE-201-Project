@@ -20,7 +20,9 @@ public class Game {
 		this.previews = new ArrayList<String>(previews);
 	}
 	
-	public Game() {}
+	public Game() {
+		this(null,0.0,null,"",null);
+	}
 	
 	public Game(Profile uploader, String description, ArrayList<String> previews) {
 		this(uploader, 0.0, null, description, previews);
