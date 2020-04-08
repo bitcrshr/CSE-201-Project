@@ -15,7 +15,7 @@ public class ProfileTest {
 	
 	@Test
 	public void testLogin() { //username password
-		ProfileClass p = new ProfileClass("username", "password");
+		Profile p = new Profile("username", "password");
 		assertTrue(p.getUserName().equals("username"));
 		assertTrue(p.getUserName() == "username");
 		assertTrue(p.getPassword().equals("password"));
@@ -26,7 +26,7 @@ public class ProfileTest {
 	
 	@Test
 	public void testEditDescription() {
-		ProfileClass p = new ProfileClass("username", "password", true, null, "this is my description", null);
+		Profile p = new Profile("username", "password", true, null, "this is my description", null);
 		assertTrue(p.getUserName().equals("username"));
 		assertTrue(p.getPassword().equals("password"));
 		assertTrue(p.getAdmin() == true);
@@ -39,8 +39,8 @@ public class ProfileTest {
 
 	@Test
 	public void testEditProfilePicture() {
-		ProfileClass p = new ProfileClass("userName", "password", true, null, "description", null);
-		assertTrue(p.getUserName().equals("username"));
+		Profile p = new Profile("userName", "password", true, null, "description", null);
+		assertTrue(p.getUserName().equals("userName"));
 		assertTrue(p.getPassword().equals("password"));
 		assertTrue(p.getProfilePicture() == null);
 		

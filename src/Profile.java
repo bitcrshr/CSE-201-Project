@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * @author Patrick Larmon (larmonpj@miamioh.edu)
  *
  */
-public class ProfileClass {
+public class Profile {
 
 	String userName;
 	String password;
@@ -14,7 +14,7 @@ public class ProfileClass {
 	String description;
 	Image profilePicture;
 	
-	public ProfileClass(String userName,
+	public Profile(String userName,
 						String password,
 						boolean admin
 						,ArrayList<Game> uploadedGame,
@@ -29,11 +29,11 @@ public class ProfileClass {
 		setProfilePicture(profilePicture);
 	}
 	
-	public ProfileClass(String userName, String password){
+	public Profile(String userName, String password){
 		this(userName,password,false,null,"",null);
 	}
 	
-	public ProfileClass(){
+	public Profile(){
 		this("","",false,null,"",null);
 	}
 	
@@ -73,7 +73,7 @@ public class ProfileClass {
 		this.description = description;
 	}
 	
-	private String getDescription(){
+	public String getDescription(){
 		return description;
 	}
 	
