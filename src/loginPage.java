@@ -73,8 +73,9 @@ public class loginPage extends JFrame{
 		btnNewButton_1.setForeground(new Color(102, 0, 204));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SearchandResults s = new SearchandResults();
-				s.setVisible(true);
+				CreateProfilePage p = new CreateProfilePage();
+				p.setVisible(true);
+				setVisible(false);
 			}
 		});
 		
@@ -84,6 +85,7 @@ public class loginPage extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				SearchandResults s = new SearchandResults();
 				s.setVisible(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();

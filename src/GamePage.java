@@ -64,6 +64,7 @@ public class GamePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				SearchandResults s = new SearchandResults();
 				s.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnBackToSearch.setHorizontalAlignment(SwingConstants.LEFT);

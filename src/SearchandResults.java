@@ -248,6 +248,7 @@ public class SearchandResults extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				GamePage g = new GamePage();
 				g.setVisible(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -261,6 +262,7 @@ public class SearchandResults extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				GamePage g = new GamePage();
 				g.setVisible(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
@@ -274,6 +276,7 @@ public class SearchandResults extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				GamePage g = new GamePage();
 				g.setVisible(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
@@ -305,6 +308,7 @@ public class SearchandResults extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				ProfilePage profile = new ProfilePage();
 				profile.setVisible(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnProfile = new GridBagConstraints();
@@ -328,6 +332,7 @@ public class SearchandResults extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				loginPage l = new loginPage();
 				l.setVisible(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnLogin = new GridBagConstraints();
