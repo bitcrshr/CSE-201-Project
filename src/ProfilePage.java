@@ -60,6 +60,7 @@ public class ProfilePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				SearchandResults s = new SearchandResults();
 				s.setVisible(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnBackToSearch = new GridBagConstraints();
