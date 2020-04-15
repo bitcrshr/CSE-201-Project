@@ -135,7 +135,7 @@ public class CreateProfilePage extends JFrame {
 				s.setVisible(true);
 				setVisible(false);
 				String username = textField.getText();
-				String password = textField_2.getText();
+				String password = textField_1.getText();
 				createProfile(username,password);
 			}
 		});
