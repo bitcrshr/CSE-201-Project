@@ -21,6 +21,8 @@ public class CreateProfilePage extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	
+	Profile p;
 
 	/**
 	 * Launch the application.
@@ -42,6 +44,7 @@ public class CreateProfilePage extends JFrame {
 	 * Create the frame.
 	 */
 	public CreateProfilePage() {
+		
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 100, 450, 300);
 		//contentPane = new JPanel();
@@ -131,6 +134,9 @@ public class CreateProfilePage extends JFrame {
 				SearchandResults s = new SearchandResults();
 				s.setVisible(true);
 				setVisible(false);
+				String username = textField.getText();
+				String password = textField_2.getText();
+				createProfile(username,password);
 			}
 		});
 		GridBagConstraints gbc_btnCreateProfile = new GridBagConstraints();
@@ -138,5 +144,15 @@ public class CreateProfilePage extends JFrame {
 		gbc_btnCreateProfile.gridx = 3;
 		gbc_btnCreateProfile.gridy = 8;
 		panel.add(btnCreateProfile, gbc_btnCreateProfile);
+		
+	}
+	
+	public Profile createProfile(String username,String password){
+		p = new Profile(username,password);
+		return p;
+	}
+	
+	public Profile getProfile(){
+		return p;
 	}
 }
