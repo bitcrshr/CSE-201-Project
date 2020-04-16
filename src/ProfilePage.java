@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -11,13 +10,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class ProfilePage extends JFrame {
-
+	private Profile profile;
+	private JLabel userNameLabel;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -38,6 +38,17 @@ public class ProfilePage extends JFrame {
 	 * Create the frame.
 	 */
 	public ProfilePage() {
+		userNameLabel = new JLabel("none");
+		initialize();
+	}
+	
+	public ProfilePage(Profile profile) {
+		this.profile = profile;
+		userNameLabel = new JLabel((profile == null) ? "none" : profile.userName);
+		initialize();
+	}
+	
+	private void initialize() {		
 		getContentPane().setBackground(new Color(255, 255, 204));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 700);
@@ -58,7 +69,7 @@ public class ProfilePage extends JFrame {
 		JButton btnBackToSearch = new JButton("Back to Search");
 		btnBackToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SearchandResults s = new SearchandResults();
+				SearchandResults s = new SearchandResults(profile);
 				s.setVisible(true);
 				setVisible(false);
 			}
@@ -87,14 +98,13 @@ public class ProfilePage extends JFrame {
 		gbc_lblNewLabel.gridy = 2;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Charlie");
-		lblNewLabel_1.setForeground(new Color(255, 51, 153));
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		userNameLabel.setForeground(new Color(255, 51, 153));
+		userNameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel_1.gridx = 5;
 		gbc_lblNewLabel_1.gridy = 2;
-		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		panel.add(userNameLabel, gbc_lblNewLabel_1);
 		
 		JLabel lblNewLabel_3 = new JLabel("My Collection:");
 		lblNewLabel_3.setForeground(new Color(255, 51, 255));

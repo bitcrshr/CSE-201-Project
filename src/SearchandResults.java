@@ -42,6 +42,9 @@ public class SearchandResults extends JFrame{
 	private JButton btnNewButton_2;
 	private JPanel panel_2;
 	private JButton btnLogin;
+	
+	private JLabel lblUserName;
+	private Profile profile;
 
 	/**
 	 * Launch the application.
@@ -63,6 +66,13 @@ public class SearchandResults extends JFrame{
 	 * Create the application.
 	 */
 	public SearchandResults() {
+		lblUserName = new JLabel("Username:");
+		initialize();
+	}
+	
+	public SearchandResults(Profile profile) {
+		this.profile = profile;
+		this.lblUserName = new JLabel("Username: " + ((profile == null) ? "none" : profile.userName));
 		initialize();
 	}
 
@@ -295,7 +305,7 @@ public class SearchandResults extends JFrame{
 		gbl_panel_2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_2.setLayout(gbl_panel_2);
 		
-		JLabel lblUserName = new JLabel("User Name:");
+		
 		lblUserName.setForeground(new Color(255, 51, 255));
 		GridBagConstraints gbc_lblUserName = new GridBagConstraints();
 		gbc_lblUserName.insets = new Insets(0, 0, 0, 5);
@@ -306,8 +316,8 @@ public class SearchandResults extends JFrame{
 		JButton btnProfile = new JButton("Profile");
 		btnProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProfilePage profile = new ProfilePage();
-				profile.setVisible(true);
+				ProfilePage profilePage = new ProfilePage(profile);
+				profilePage.setVisible(true);
 				setVisible(false);
 			}
 		});

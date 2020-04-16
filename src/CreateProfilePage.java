@@ -111,13 +111,13 @@ public class CreateProfilePage extends JFrame {
 		panel.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblConfirmPassowrd = new JLabel("Confirm Passowrd:");
-		GridBagConstraints gbc_lblConfirmPassowrd = new GridBagConstraints();
-		gbc_lblConfirmPassowrd.anchor = GridBagConstraints.EAST;
-		gbc_lblConfirmPassowrd.insets = new Insets(0, 0, 5, 5);
-		gbc_lblConfirmPassowrd.gridx = 2;
-		gbc_lblConfirmPassowrd.gridy = 6;
-		panel.add(lblConfirmPassowrd, gbc_lblConfirmPassowrd);
+		JLabel lblConfirmPassowrd = new JLabel("Confirm Password:");
+		GridBagConstraints gbc_lblConfirmPassword = new GridBagConstraints();
+		gbc_lblConfirmPassword.anchor = GridBagConstraints.EAST;
+		gbc_lblConfirmPassword.insets = new Insets(0, 0, 5, 5);
+		gbc_lblConfirmPassword.gridx = 2;
+		gbc_lblConfirmPassword.gridy = 6;
+		panel.add(lblConfirmPassowrd, gbc_lblConfirmPassword);
 		
 		textField_2 = new JTextField();
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
@@ -131,12 +131,11 @@ public class CreateProfilePage extends JFrame {
 		JButton btnCreateProfile = new JButton("Create Profile");
 		btnCreateProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SearchandResults s = new SearchandResults();
-				s.setVisible(true);
-				setVisible(false);
 				String username = textField.getText();
 				String password = textField_1.getText();
-				createProfile(username,password);
+				SearchandResults s = new SearchandResults(createProfile(username, password));
+				s.setVisible(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnCreateProfile = new GridBagConstraints();
