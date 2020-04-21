@@ -1,12 +1,17 @@
 import java.awt.Image;
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * A class to represent a Profile.
  * @author Patrick Larmon (larmonpj@miamioh.edu)
  *
  */
-public class Profile {
+public class Profile implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4873380397047408079L;
 	String userName;
 	String password;
 	boolean admin;
@@ -17,7 +22,7 @@ public class Profile {
 	public Profile(String userName,
 						String password,
 						boolean admin
-						,ArrayList<Game> uploadedGame,
+						,ArrayList<Game> uploadedGames,
 						String description, 
 						Image profilePicture){
 		
@@ -35,6 +40,10 @@ public class Profile {
 	
 	public Profile(){
 		this("","",false,null,"",null);
+	}
+	
+	public Profile(Profile p) {
+		this(p.userName, p.password, p.admin, p.uploadedGames, p.description, p.profilePicture);
 	}
 	
 	public void setUserName(String user){

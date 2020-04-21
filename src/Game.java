@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -5,7 +6,11 @@ import java.util.ArrayList;
  * @author Chandler Davis (davisc10@miamioh.edu)
  *
  */
-public class Game {
+public class Game implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6746977338198319164L;
 	private final Profile uploader;
 	private double rating;
 	private ArrayList<String> comments;
