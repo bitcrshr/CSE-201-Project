@@ -1,3 +1,4 @@
+package data_classes;
 import java.io.Serializable;
 import java.util.ArrayList;
 

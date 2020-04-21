@@ -1,3 +1,4 @@
+package pages;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -10,6 +11,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import data_classes.AuthenticationManager;
+import data_classes.Profile;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

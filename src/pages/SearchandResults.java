@@ -1,8 +1,13 @@
+package pages;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import data_classes.AuthenticationManager;
+import data_classes.Profile;
+
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.Image;

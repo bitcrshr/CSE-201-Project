@@ -1,3 +1,5 @@
+package data_classes;
+
 /**
  * A singleton class to handle all authentication.
  * @author Chandler Davis (davisc10)
@@ -7,6 +9,18 @@ public class AuthenticationManager {
 	private static AuthenticationManager instance;
 	
 	private Profile currentUser;
+	
+	/*
+	 * This is what's known as a "singleton." It's a class that can only ever have 
+	 * one instance of itself. It's really nothing special, it just has a private
+	 * constructor and a public method to access the instance. This ensures that there
+	 * can't be more than one instance.
+	 * 
+	 * This is useful in this situation, because it could get a little hairy if we
+	 * had multiple instances of this class trying to handle signing in. For instance,
+	 * if we had multiple instances of it and didn't keep them all synchronized,
+	 * they might all have different currentUsers.
+	 */
 	
 	/**
 	 * Private constructor to prevent outside instantiation

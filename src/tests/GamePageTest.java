@@ -1,6 +1,9 @@
+package tests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import pages.GamePage;
 
 public class GamePageTest {
 
