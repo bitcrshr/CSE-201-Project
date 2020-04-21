@@ -66,15 +66,11 @@ public class SearchandResults extends JFrame{
 	 * Create the application.
 	 */
 	public SearchandResults() {
-		lblUserName = new JLabel("Username:");
+		profile = AuthenticationManager.getInstance().currentUser();
+		lblUserName = (profile == null) ? new JLabel("Username: none") : new JLabel("Username: " + profile.getUserName());
 		initialize();
 	}
-	
-	public SearchandResults(Profile profile) {
-		this.profile = profile;
-		this.lblUserName = new JLabel("Username: " + ((profile == null) ? "none" : profile.userName));
-		initialize();
-	}
+
 
 	/**
 	 * Initialize the contents of the frame.
@@ -316,7 +312,7 @@ public class SearchandResults extends JFrame{
 		JButton btnProfile = new JButton("Profile");
 		btnProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ProfilePage profilePage = new ProfilePage(profile);
+				ProfilePage profilePage = new ProfilePage();
 				profilePage.setVisible(true);
 				setVisible(false);
 			}
@@ -337,14 +333,36 @@ public class SearchandResults extends JFrame{
 		gbc_lblBugFreeGames.gridy = 0;
 		panel_2.add(lblBugFreeGames, gbc_lblBugFreeGames);
 		
-		btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				loginPage l = new loginPage();
-				l.setVisible(true);
-				setVisible(false);
-			}
-		});
+		if (AuthenticationManager.getInstance().currentUser() == null) {
+			btnLogin = new JButton("Login");
+			btnLogin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					LoginPage l = new LoginPage();
+					l.setVisible(true);
+					setVisible(false);
+				}
+			});
+		} else {
+			btnLogin = new JButton("Sign Out");
+			btnLogin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					AuthenticationManager.getInstance().signOut();
+					lblUserName = new JLabel("Username: none");
+					btnLogin = new JButton("Login");
+					btnLogin.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							LoginPage l = new LoginPage();
+							l.setVisible(true);
+							setVisible(false);
+						}
+					});
+				}
+			});
+			
+			repaint();
+		}
+		
+		
 		GridBagConstraints gbc_btnLogin = new GridBagConstraints();
 		gbc_btnLogin.gridx = 6;
 		gbc_btnLogin.gridy = 0;

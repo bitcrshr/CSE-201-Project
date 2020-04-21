@@ -19,7 +19,7 @@ import java.awt.Image;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
 
-public class loginPage extends JFrame{
+public class LoginPage extends JFrame{
 
 	//private JFrame frame;
 
@@ -30,7 +30,7 @@ public class loginPage extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					loginPage window = new loginPage();
+					LoginPage window = new LoginPage();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,9 +42,7 @@ public class loginPage extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public loginPage() {
-		
-		
+	public LoginPage() {
 		initialize();
 	}
 

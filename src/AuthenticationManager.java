@@ -53,7 +53,7 @@ public class AuthenticationManager {
 	}
 	
 	/**
-	 * Attempts to sign up a user with the given username and password.
+	 * Attempts to sign up a user with the given username and password. If sign up is successful, the user will also be signed in.
 	 * @param username the username
 	 * @param password the password
 	 * @return true if the sign up is sucessful, false otherwise (e.g., the user already exists)
@@ -63,7 +63,7 @@ public class AuthenticationManager {
 			return false;
 		}
 				
-		return ProfileStorage.getInstance().storeProfile(new Profile(username, password));
+		return ProfileStorage.getInstance().storeProfile(new Profile(username, password)) && (this.signIn(username, password) != null);
 	}
 	
 	/**

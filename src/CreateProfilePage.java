@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
@@ -133,9 +135,17 @@ public class CreateProfilePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String username = textField.getText();
 				String password = textField_1.getText();
-				SearchandResults s = new SearchandResults(createProfile(username, password));
-				s.setVisible(true);
-				setVisible(false);
+				
+				if(AuthenticationManager.getInstance().signUp(username, password)) {
+					SearchandResults s = new SearchandResults();
+					s.setVisible(true);
+					setVisible(false);
+				} else {
+					JOptionPane.showMessageDialog(null,
+						    "Sign up failed. Please try again.",
+						    "Inane warning",
+						    JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		GridBagConstraints gbc_btnCreateProfile = new GridBagConstraints();

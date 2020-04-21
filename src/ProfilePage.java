@@ -38,13 +38,8 @@ public class ProfilePage extends JFrame {
 	 * Create the frame.
 	 */
 	public ProfilePage() {
-		userNameLabel = new JLabel("none");
-		initialize();
-	}
-	
-	public ProfilePage(Profile profile) {
-		this.profile = profile;
-		userNameLabel = new JLabel((profile == null) ? "none" : profile.userName);
+		profile = AuthenticationManager.getInstance().currentUser();
+		userNameLabel = (profile == null) ? new JLabel("none") : new JLabel(profile.getUserName());
 		initialize();
 	}
 	
@@ -69,7 +64,7 @@ public class ProfilePage extends JFrame {
 		JButton btnBackToSearch = new JButton("Back to Search");
 		btnBackToSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SearchandResults s = new SearchandResults(profile);
+				SearchandResults s = new SearchandResults();
 				s.setVisible(true);
 				setVisible(false);
 			}
