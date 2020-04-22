@@ -10,6 +10,7 @@ public class Game implements Serializable {
 	/**
 	 * 
 	 */
+	private String name;
 	private static final long serialVersionUID = 6746977338198319164L;
 	private final Profile uploader;
 	private double rating;
@@ -17,20 +18,23 @@ public class Game implements Serializable {
 	private String description;
 	private ArrayList<String> previews;
 	
-	public Game(Profile uploader, double rating, ArrayList<String> comments, String description, ArrayList<String> previews) {
+	public Game(String name, Profile uploader, double rating, ArrayList<String> comments, String description, ArrayList<String> previews) {
+		this.name = name;
 		this.uploader = uploader;
 		this.rating = rating;
-		this.comments = new ArrayList<String>(comments);
+		//this.comments = new ArrayList<String>(comments);
+		this.comments = comments;
 		this.description = description;
-		this.previews = new ArrayList<String>(previews);
+		//this.previews = new ArrayList<String>(previews);
+		this.previews = previews;
 	}
 	
 	public Game() {
-		this(null,0.0,null,"",null);
+		this("",null,0.0,new ArrayList<String>(),"",new ArrayList<String>());
 	}
 	
-	public Game(Profile uploader, String description, ArrayList<String> previews) {
-		this(uploader, 0.0, null, description, previews);
+	public Game(String name,Profile uploader, String description, ArrayList<String> previews) {
+		this(name,uploader, 0.0, null, description, previews);
 	}
 	
 	public boolean comment(Profile commenter, String newComment) {
@@ -51,6 +55,14 @@ public class Game implements Serializable {
 	
 	public boolean editPreviews(Profile user, ArrayList<String> newPreviews) {
 		return false;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public double getRating() {

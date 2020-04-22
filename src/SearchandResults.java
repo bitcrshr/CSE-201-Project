@@ -15,6 +15,7 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class SearchandResults extends JFrame{
@@ -252,7 +253,10 @@ public class SearchandResults extends JFrame{
 		btnNewButton = new JButton("Visit this game");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GamePage g = new GamePage();
+				Profile uploader = new Profile("RiotGames","psswrd");
+				String desc = "Wildly popular MOBA with over 130 characters to choose from! Download for free now!";
+				Game game = new Game("League of Legends",uploader,desc,new ArrayList<String>());
+				GamePage g = new GamePage(game);
 				g.setVisible(true);
 				setVisible(false);
 			}

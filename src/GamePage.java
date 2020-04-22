@@ -14,6 +14,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.Color;
@@ -31,7 +32,7 @@ public class GamePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GamePage frame = new GamePage();
+					GamePage frame = new GamePage(new Game());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,11 +40,24 @@ public class GamePage extends JFrame {
 			}
 		});
 	}
+	
+	//public Game game = null;
 
 	/**
 	 * Create the frame.
 	 */
 	public GamePage() {
+		this(new Game());
+	}
+	
+	
+	public GamePage(Game game) {
+		
+		//Profile uploader = new Profile("RiotGames","psswrd");
+		//String desc = "Wildly popular MOBA with over 130 characters to choose from! Download for free now!";
+		//Game game = new Game("League of Legends",uploader,desc,new ArrayList<String>());
+		//Game game = new Game();
+		
 		getContentPane().setBackground(new Color(255, 255, 204));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 700);
@@ -75,7 +89,10 @@ public class GamePage extends JFrame {
 		gbc_btnBackToSearch.gridy = 0;
 		getContentPane().add(btnBackToSearch, gbc_btnBackToSearch);
 		
-		JLabel lblgameTitle = new JLabel("[Game Title]");
+		//return (currentUser == null) ? null : new Profile(currentUser);
+		
+		String name = (game == null) ? "none" : game.getName();
+		JLabel lblgameTitle = new JLabel(name);
 		GridBagConstraints gbc_lblgameTitle = new GridBagConstraints();
 		gbc_lblgameTitle.insets = new Insets(0, 0, 5, 5);
 		gbc_lblgameTitle.gridx = 1;
@@ -104,7 +121,8 @@ public class GamePage extends JFrame {
 		gbc_label.gridy = 5;
 		getContentPane().add(label, gbc_label);
 		
-		JLabel lbldescription = new JLabel("[Description]");
+		String des = (game == null) ? "none" : game.getDescription();
+		JLabel lbldescription = new JLabel(des);
 		lbldescription.setBackground(Color.LIGHT_GRAY);
 		GridBagConstraints gbc_lbldescription = new GridBagConstraints();
 		gbc_lbldescription.gridheight = 5;
