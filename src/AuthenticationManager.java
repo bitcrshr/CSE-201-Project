@@ -33,6 +33,19 @@ public class AuthenticationManager {
 	}
 	
 	/**
+	 * Updates a profile if and only if the username of the profile to update is logged in.
+	 * @param updatedProfile the updated profile (the username must match the currentUser)
+	 * @return true if successful, false otherwise.
+	 */
+	public boolean updateProfile(Profile updatedProfile) {
+		if (currentUser != null && updatedProfile.userName.equals(currentUser.userName)) {
+			return ProfileStorage.getInstance().storeProfile(updatedProfile);
+		}
+		
+		return false;
+	}
+	
+	/**
 	 * Attempts a sign in with the given username and password
 	 * @param username the username
 	 * @param password the password
@@ -56,7 +69,7 @@ public class AuthenticationManager {
 	 * Attempts to sign up a user with the given username and password. If sign up is successful, the user will also be signed in.
 	 * @param username the username
 	 * @param password the password
-	 * @return true if the sign up is sucessful, false otherwise (e.g., the user already exists)
+	 * @return true if the sign up is successful, false otherwise (e.g., the user already exists)
 	 */
 	public boolean signUp(String username, String password) {
 		if (ProfileStorage.getInstance().profileExists(username)) {

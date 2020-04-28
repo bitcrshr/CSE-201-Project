@@ -7,59 +7,59 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 /**
- * A singleton class to store and retrieve Profiles from a backend.
+ * A singleton class to store and retrieve Games from a backend.
  * @author Chandler Davis (davisc10)
  *
  */
-public class ProfileStorage {
-	private static ProfileStorage instance;
+public class GameStorage {
+	private static GameStorage instance;
 	
-	private HashMap<String, Profile> profileMap;
+	private HashMap<String, Game> gameMap;
 	private FileInputStream fileInputStream;
 	private FileOutputStream fileOutputStream;
 	private ObjectOutputStream objectOutputStream;
 	private ObjectInputStream objectInputStream;
 	private File file;
 	
-	private final String STORAGE_FILENAME = "profiles.data";
+	private final String STORAGE_FILENAME = "games.data";
 	
 	/**
 	 * Private constructor to prevent outside instantiation.
 	 */
-	private ProfileStorage() {}
+	private GameStorage() {}
 	
 	/**
 	 * Returns the static instance of this class.
 	 * @return the static instance of this class.
 	 */
-	public static ProfileStorage getInstance() {
+	public static GameStorage getInstance() {
 		if (instance == null)
-			instance = new ProfileStorage();
+			instance = new GameStorage();
 		
 		return instance;
 	}
 	
 	/**
-	 * Clears the backend of all profiles. This cannot be undone.
+	 * Clears the backend of all Games. This cannot be done.
 	 */
 	public void clear() {
-		profileMap = null;
+		gameMap = null;
 		
 		(new File(STORAGE_FILENAME)).delete();
 	}
 	
 	/**
-	 * Stores a Profile in the backend.
-	 * @param profile the profile to store
+	 * Stores a Game in the backend
+	 * @param game the game to store
 	 * @return true if successful, false otherwise.
 	 */
-	public boolean storeProfile(Profile profile) {		
+	public boolean storeGame(Game game) {
 		checkMapInstantiation();
 		
-		if (profileMap.containsValue(profile))
+		if (gameMap.containsValue(game))
 			return false;
 		
-		profileMap.put(profile.getUserName(), profile);
+		gameMap.put(game.getName(), game);
 		
 		try {
 			writeToFile();
@@ -72,41 +72,41 @@ public class ProfileStorage {
 	}
 	
 	/**
-	 * Gets a Profile from the backend.
-	 * @param username the username of the profile to retrieve
-	 * @return the Profile matching the username, if it exists.
+	 * Gets a Game from the backend.
+	 * @param name the name of the Game to retrieve
+	 * @return the Game matching the name, if it exists.
 	 */
-	public Profile getProfile(String username) {
+	public Game getGame(String name) {
 		checkMapInstantiation();
 		
-		return profileMap.get(username);
+		return gameMap.get(name);
 	}
 	
 	/**
-	 * Checks to see if a profile already exists.
-	 * @param username the username of the profile.
-	 * @return true if the profile exists, false otherwise.
+	 * Checks to see if a Game already exists.
+	 * @param name the name of the Game.
+	 * @return true if the Game exists, false otherwise.
 	 */
-	public boolean profileExists(String username) {
+	public boolean gameExists(String name) {
 		checkMapInstantiation();
 		
-		return profileMap.containsKey(username);
+		return gameMap.containsKey(name);
 	}
 	
 	/**
-	 * Deletes a profile from the backend.
-	 * @param username the username of the profile to delete
+	 * Deletes a Game from the backend
+	 * @param name the name of the Game to delete
 	 * @return true if successful, false otherwise.
 	 */
-	public boolean deleteProfile(String username) {
+	public boolean deleteGame(String name) {
 		checkMapInstantiation();
 		
-		boolean successful = profileMap.remove(username) != null;
+		boolean successful = gameMap.remove(name) != null;
 		(new File(STORAGE_FILENAME)).delete();
 		
 		try {
 			writeToFile();
-		} catch (IOException e) {
+		} catch(IOException e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -115,9 +115,9 @@ public class ProfileStorage {
 	}
 	
 	private void checkMapInstantiation() {
-		if (profileMap == null) {
+		if (gameMap == null) {
 			try {
-				profileMap = loadFromFile();
+				gameMap = loadFromFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
@@ -126,24 +126,23 @@ public class ProfileStorage {
 		}
 	}
 	
-	
 	@SuppressWarnings("unchecked")
-	private HashMap<String, Profile> loadFromFile() throws IOException, ClassNotFoundException {
+	private HashMap<String, Game> loadFromFile() throws IOException, ClassNotFoundException {
 		file = new File(STORAGE_FILENAME);
 		
 		if (!file.exists())
-			return new HashMap<String, Profile>();
+			return new HashMap<String, Game>();
 		
 		fileInputStream = new FileInputStream(file);
 		objectInputStream = new ObjectInputStream(fileInputStream);
 		
-		HashMap<String, Profile> map = (HashMap<String, Profile>) objectInputStream.readObject();
+		HashMap<String, Game> map = (HashMap<String, Game>) objectInputStream.readObject();
 		
 		objectInputStream.close();
 		fileInputStream.close();
-					
+		
 		return map;
-				
+		
 	}
 	
 	private void writeToFile() throws IOException {
@@ -153,9 +152,10 @@ public class ProfileStorage {
 		fileOutputStream = new FileOutputStream(file);
 		objectOutputStream = new ObjectOutputStream(fileOutputStream);
 		
-		objectOutputStream.writeObject(profileMap);
+		objectOutputStream.writeObject(gameMap);
 		
 		objectOutputStream.close();
 		fileOutputStream.close();
 	}
+	
 }

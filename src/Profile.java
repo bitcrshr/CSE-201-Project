@@ -112,4 +112,56 @@ public class Profile implements Serializable {
 		uploadedGames.add(newGame);
 		return false;
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (admin ? 1231 : 1237);
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((profilePicture == null) ? 0 : profilePicture.hashCode());
+		result = prime * result + ((uploadedGames == null) ? 0 : uploadedGames.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Profile other = (Profile) obj;
+		if (admin != other.admin)
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (profilePicture == null) {
+			if (other.profilePicture != null)
+				return false;
+		} else if (!profilePicture.equals(other.profilePicture))
+			return false;
+		if (uploadedGames == null) {
+			if (other.uploadedGames != null)
+				return false;
+		} else if (!uploadedGames.equals(other.uploadedGames))
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
+		return true;
+	}
 }
