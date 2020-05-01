@@ -11,7 +11,9 @@ class GameStorageTest {
 		3.2,
 		new ArrayList<String>(),
 		"testDescription",
-		new ArrayList<String>()
+		new ArrayList<String>(),
+		"",
+		""
 	);
 	
 	private Game testGame2 = new Game(
@@ -20,7 +22,9 @@ class GameStorageTest {
 			2.8,
 			new ArrayList<String>(),
 			"testDescription2",
-			new ArrayList<String>()
+			new ArrayList<String>(),
+			"",
+			""
 	);
 
 	@Test
@@ -73,6 +77,20 @@ class GameStorageTest {
 		assertFalse(GameStorage.getInstance().deleteGame(testGame2.getName()));
 		assertTrue(GameStorage.getInstance().deleteGame(testGame1.getName()));
 		assertFalse(GameStorage.getInstance().deleteGame(testGame1.getName()));
+	}
+	
+	@Test
+	void testToArray() {
+		GameStorage.getInstance().clear();
+		
+		assertTrue(GameStorage.getInstance().toArray().length == 0);
+		
+		GameStorage.getInstance().storeGame(testGame1);
+		assertTrue(GameStorage.getInstance().toArray().length == 1);
+		assertTrue(GameStorage.getInstance().toArray()[0].equals(testGame1));
+		GameStorage.getInstance().storeGame(testGame2);
+		assertTrue(GameStorage.getInstance().toArray().length == 2);
+		assertTrue(GameStorage.getInstance().toArray()[1].equals(testGame2));
 	}
 
 }

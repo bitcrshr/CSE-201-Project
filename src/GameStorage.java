@@ -114,6 +114,22 @@ public class GameStorage {
 		return successful;
 	}
 	
+	/**
+	 * Returns an array of all game objects stored in the backend
+	 * @return an array of all game objects stored in the backend
+	 */
+	public Game[] toArray() {
+		checkMapInstantiation();
+		
+		if (gameMap == null)
+			return new Game[0];
+		
+		Game[] games = new Game[gameMap.size()];
+		gameMap.values().toArray(games);
+		
+		return games;
+	}
+	
 	private void checkMapInstantiation() {
 		if (gameMap == null) {
 			try {

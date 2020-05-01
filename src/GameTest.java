@@ -13,7 +13,7 @@ class GameTest {
 		Profile myprofile = new Profile("tester","mypassword");
 		ArrayList<String> mycomments = new ArrayList<String>();
 		ArrayList<String> mypreviews = new ArrayList<String>();
-		Game mygame = new Game(gameName,myprofile, 20.1, mycomments,"description", mypreviews);
+		Game mygame = new Game(gameName,myprofile, 20.1, mycomments,"description", mypreviews, "", "");
 		assertTrue(mygame.comment(myprofile, "newComment"));
 		assertTrue(mygame.delete(myprofile, "newComment"));
 		assertTrue(mygame.editOwnComment(myprofile, "oldComment","newComment"));
