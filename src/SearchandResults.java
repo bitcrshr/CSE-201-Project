@@ -46,12 +46,7 @@ public class SearchandResults extends JFrame{
 	private JButton btnNewButton_3;
 	private JTextField txtWord;
 	
-//	Profile uploader = new Profile("RiotGames","psswrd");
-//	String desc = "Wildly popular MOBA with over 130 characters to choose from! Download for free now!";
-//	Game game = new Game("League of Legends",uploader,desc,new ArrayList<String>(),"PC","MOBA");
-//	GamePage g = new GamePage(game);
-	
-	private Game[] allGames = {	new Game("League of Legends",
+	private static Game[] games = {	new Game("League of Legends",
 										"",
 										"Windows",
 										"MOBA"),
@@ -67,6 +62,25 @@ public class SearchandResults extends JFrame{
 										"",
 										"All",
 										"MMO")};
+	
+	private static GameStorage gs = GameStorage.getInstance();
+	private static boolean added = gs.storeGame(new Game("League of Legends",
+										"",
+										"Windows",
+										"MOBA"));
+	private static boolean added1 = gs.storeGame(new Game("Valorant",
+			"",
+			"Windows",
+			"FPS"));
+	private static boolean added2 = gs.storeGame(new Game("Super Mario Bros",
+			"",
+			"All",
+			"Platformer"));
+	private static boolean added3 = gs.storeGame(new Game("World of Warcraft",
+			"",
+			"All",
+			"MMO"));
+	private static Game[]  allGames = gs.toArray();
 	private Game[] searchGames = allGames;
 
 	/**
@@ -89,8 +103,13 @@ public class SearchandResults extends JFrame{
 	 * Create the application.
 	 */
 	public SearchandResults() {
+		this(allGames);
+	}
+	
+	public SearchandResults(Game[] searchGames) {
 		profile = AuthenticationManager.getInstance().currentUser();
 		lblUserName = (profile == null) ? new JLabel("Username: none") : new JLabel("Username: " + profile.getUserName());
+		this.searchGames = searchGames;
 		initialize();
 	}
 
@@ -193,15 +212,25 @@ public class SearchandResults extends JFrame{
 				String genre = (String)comboBoxGenre.getSelectedItem();
 				String platform = (String)comboBoxPlatform.getSelectedItem();
 				String substring = txtWord.getText();
+				Game[] searches = new Game[allGames.length];
+				int count = 0;
 				for(Game g : allGames){
 					if(g.getGenre().equals(genre) || genre.contains("-")){ 
 						if(g.getPlatform().equals(platform) || genre.contains("-")){
 							if(g.getName().contains(substring)){
-								//searchGames.add(g);
+								searches[count] = g;
+								count++;
 							}
 						}
 					}
 				}
+				Game[] retGame = new Game[count];
+				for(int i = 0 ;i<retGame.length;i++) {
+					retGame[i] = searches[i];
+				}
+				SearchandResults sr = new SearchandResults(retGame);
+				sr.setVisible(true);
+				setVisible(false);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
