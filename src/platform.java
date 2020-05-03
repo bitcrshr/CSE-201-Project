@@ -1,4 +1,4 @@
 
 public enum platform {
-	WINDOWS,MAC,LINUX,ALL
+	ALL,WINDOWS,MAC,LINUX
 }

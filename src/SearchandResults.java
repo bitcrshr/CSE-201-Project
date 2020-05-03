@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class SearchandResults extends JFrame{
-	private JComboBox comboBoxPlatform;
-	private JComboBox comboBoxGenre;
-	private JComboBox comboBoxTime;
+	private JComboBox<platform> comboBoxPlatform;
+	private JComboBox<genre> comboBoxGenre;
+	private JComboBox<String> comboBoxTime;
 	private JPanel panel_1;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
@@ -136,9 +136,9 @@ public class SearchandResults extends JFrame{
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		platform s2[] = {null,platform.WINDOWS, platform.MAC, platform.LINUX, platform.ALL};
+		//platform s2[] = {null,platform.WINDOWS, platform.MAC, platform.LINUX, platform.ALL};
 		
-		genre s1[] = {null,genre.FPS, genre.RPG, genre.MMO, genre.MOBA,genre.PLATFORMER,genre.PUZZLE};
+		//genre s1[] = {null,genre.FPS, genre.RPG, genre.MMO, genre.MOBA,genre.PLATFORMER,genre.PUZZLE};
 		
 		String s0[] = { "-------","this week", "this month", "this year", "all time"};
 		
@@ -158,13 +158,13 @@ public class SearchandResults extends JFrame{
 		gbc_lblNewLabel_2.gridy = 0;
 		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		lblNewLabel_3 = new JLabel("Popularity");
-		lblNewLabel_3.setForeground(new Color(255, 51, 255));
-		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_3.gridx = 3;
-		gbc_lblNewLabel_3.gridy = 0;
-		panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
+		//lblNewLabel_3 = new JLabel("Popularity");
+		//lblNewLabel_3.setForeground(new Color(255, 51, 255));
+		//GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
+		//gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
+		//gbc_lblNewLabel_3.gridx = 3;
+		//gbc_lblNewLabel_3.gridy = 0;
+		//panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JLabel lblNewLabel = new JLabel("Advanced Search");
 		lblNewLabel.setForeground(new Color(255, 0, 153));
@@ -174,34 +174,34 @@ public class SearchandResults extends JFrame{
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 1;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
-		comboBoxTime = new JComboBox(s2);
-		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
-		gbc_comboBox_2.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_2.gridx = 1;
-		gbc_comboBox_2.gridy = 1;
-		panel.add(comboBoxTime, gbc_comboBox_2);
-		comboBoxGenre = new JComboBox(s1);
+		//comboBoxTime = new JComboBox(s0);
+		//GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
+		//gbc_comboBox_2.insets = new Insets(0, 0, 5, 5);
+		//gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
+		//gbc_comboBox_2.gridx = 3;
+		//gbc_comboBox_2.gridy = 1;
+		//panel.add(comboBoxTime, gbc_comboBox_2);
+		comboBoxGenre = new JComboBox(genre.values());
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox_1.gridx = 2;
 		gbc_comboBox_1.gridy = 1;
 		panel.add(comboBoxGenre, gbc_comboBox_1);
-		comboBoxPlatform = new JComboBox(s0);
+		comboBoxPlatform = new JComboBox(platform.values());
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 3;
+		gbc_comboBox.gridx = 1;
 		gbc_comboBox.gridy = 1;
 		panel.add(comboBoxPlatform, gbc_comboBox);
 		
 		txtWord = new JTextField();
-		txtWord.setText("this is a search box");
+		txtWord.setText("");
 		GridBagConstraints gbc_txtThisIsA = new GridBagConstraints();
 		gbc_txtThisIsA.insets = new Insets(0, 0, 5, 0);
 		gbc_txtThisIsA.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txtThisIsA.gridx = 4;
+		gbc_txtThisIsA.gridx = 3;
 		gbc_txtThisIsA.gridy = 1;
 		panel.add(txtWord, gbc_txtThisIsA);
 		txtWord.setColumns(10);
@@ -212,13 +212,13 @@ public class SearchandResults extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				genre gen = (genre) comboBoxGenre.getSelectedItem();
 				platform plat = (platform) comboBoxPlatform.getSelectedItem();
-				String substring = txtWord.getText();
+				String substring = txtWord.getText().toLowerCase();
 				Game[] searches = new Game[allGames.length];
 				int count = 0;
 				for(Game g : allGames){
-					if(g.getGenre().equals(gen) || gen == null){ 
-						if(g.getPlatform().equals(plat) || gen == null){
-							if(g.getName().contains(substring)){
+					if(g.getGenre().equals(gen) || gen.equals(genre.ALL)){ 
+						if(g.getPlatform().equals(plat) || plat.equals(platform.ALL)){
+							if(g.getName().toLowerCase().contains(substring)){
 								searches[count] = g;
 								count++;
 							}
@@ -301,126 +301,6 @@ public class SearchandResults extends JFrame{
 				count = 0;
  			}
 		}
-		
-//		lblNewLabel_4 = new JLabel("Game Name");
-//		lblNewLabel_4.setForeground(new Color(255, 51, 255));
-//		GridBagConstraints gbc_lblNewLabel_4 = new GridBagConstraints();
-//		gbc_lblNewLabel_4.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblNewLabel_4.gridx = 0;
-//		gbc_lblNewLabel_4.gridy = 0;
-//		panel_1.add(lblNewLabel_4, gbc_lblNewLabel_4);
-//		
-//		lblNewLabel_5 = new JLabel("Game Name");
-//		lblNewLabel_5.setForeground(new Color(255, 51, 255));
-//		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
-//		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblNewLabel_5.gridx = 1;
-//		gbc_lblNewLabel_5.gridy = 0;
-//		panel_1.add(lblNewLabel_5, gbc_lblNewLabel_5);
-//		
-//		lblNewLabel_6 = new JLabel("Game Name");
-//		lblNewLabel_6.setForeground(new Color(255, 51, 255));
-//		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
-//		gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblNewLabel_6.gridx = 2;
-//		gbc_lblNewLabel_6.gridy = 0;
-//		panel_1.add(lblNewLabel_6, gbc_lblNewLabel_6);
-//		
-	
-//		 ImageIcon icon = new ImageIcon("androidBook.jpg");
-//		  JLabel label = new JLabel(icon);
-//		ImageIcon icon = new ImageIcon("League.jpg");
-//		Image image = icon.getImage();
-//		Image newimg = image.getScaledInstance(150,150, java.awt.Image.SCALE_SMOOTH);
-//		icon = new ImageIcon(newimg);
-//		lblNewLabel_7 = new JLabel(icon);
-//		GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
-//		gbc_lblNewLabel_7.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblNewLabel_7.gridx = 0;
-//		gbc_lblNewLabel_7.gridy = 1;
-//		panel_1.add(lblNewLabel_7, gbc_lblNewLabel_7);
-//		
-//		lblNewLabel_8 = new JLabel(icon);
-//		GridBagConstraints gbc_lblNewLabel_8 = new GridBagConstraints();
-//		gbc_lblNewLabel_8.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblNewLabel_8.gridx = 1;
-//		gbc_lblNewLabel_8.gridy = 1;
-//		panel_1.add(lblNewLabel_8, gbc_lblNewLabel_8);
-//		
-//		lblNewLabel_9 = new JLabel(icon);
-//		GridBagConstraints gbc_lblNewLabel_9 = new GridBagConstraints();
-//		gbc_lblNewLabel_9.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblNewLabel_9.gridx = 2;
-//		gbc_lblNewLabel_9.gridy = 1;
-//		panel_1.add(lblNewLabel_9, gbc_lblNewLabel_9);
-		
-//		lblNewLabel_10 = new JLabel("Description");
-//		lblNewLabel_10.setForeground(new Color(255, 51, 255));
-//		GridBagConstraints gbc_lblNewLabel_10 = new GridBagConstraints();
-//		gbc_lblNewLabel_10.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblNewLabel_10.gridx = 0;
-//		gbc_lblNewLabel_10.gridy = 2;
-//		panel_1.add(lblNewLabel_10, gbc_lblNewLabel_10);
-//		
-//		lblNewLabel_11 = new JLabel("Description");
-//		lblNewLabel_11.setForeground(new Color(255, 51, 255));
-//		GridBagConstraints gbc_lblNewLabel_11 = new GridBagConstraints();
-//		gbc_lblNewLabel_11.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblNewLabel_11.gridx = 1;
-//		gbc_lblNewLabel_11.gridy = 2;
-//		panel_1.add(lblNewLabel_11, gbc_lblNewLabel_11);
-//		
-//		lblNewLabel_12 = new JLabel("Description");
-//		lblNewLabel_12.setForeground(new Color(255, 51, 255));
-//		GridBagConstraints gbc_lblNewLabel_12 = new GridBagConstraints();
-//		gbc_lblNewLabel_12.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblNewLabel_12.gridx = 2;
-//		gbc_lblNewLabel_12.gridy = 2;
-//		panel_1.add(lblNewLabel_12, gbc_lblNewLabel_12);
-		
-//		btnNewButton = new JButton("Visit this game");
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				Profile uploader = new Profile("RiotGames","psswrd");
-//				String desc = "Wildly popular MOBA with over 130 characters to choose from! Download for free now!";
-//				Game game = new Game("League of Legends",uploader,desc,new ArrayList<String>(),"PC","MOBA");
-//				GamePage g = new GamePage(game);
-//				g.setVisible(true);
-//				setVisible(false);
-//			}
-//		});
-//		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-//		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-//		gbc_btnNewButton.gridx = 0;
-//		gbc_btnNewButton.gridy = 3;
-//		panel_1.add(btnNewButton, gbc_btnNewButton);
-//		
-//		btnNewButton_1 = new JButton("Visit this game");
-//		btnNewButton_1.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				GamePage g = new GamePage();
-//				g.setVisible(true);
-//				setVisible(false);
-//			}
-//		});
-//		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-//		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
-//		gbc_btnNewButton_1.gridx = 1;
-//		gbc_btnNewButton_1.gridy = 3;
-//		panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
-//		
-//		btnNewButton_2 = new JButton("Visit this game");
-//		btnNewButton_2.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				GamePage g = new GamePage();
-//				g.setVisible(true);
-//				setVisible(false);
-//			}
-//		});
-//		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-//		gbc_btnNewButton_2.gridx = 2;
-//		gbc_btnNewButton_2.gridy = 3;
-//		panel_1.add(btnNewButton_2, gbc_btnNewButton_2);
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(new Color(204, 255, 255));
