@@ -1,6 +1,12 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+//import Game.genre;
+//import Game.platform;
+
+//import Game.genre;
+//import Game.platform;
+
 /**
  * A class to represent a Game.
  * @author Chandler Davis (davisc10@miamioh.edu)
@@ -19,8 +25,10 @@ public class Game implements Serializable {
 	private ArrayList<String> previews;
 	private String platform;
 	private String genre;
+	private genre g;
+	private platform p;
 	
-	public Game(String name, Profile uploader, double rating, ArrayList<String> comments, String description, ArrayList<String> previews,String platform,String genre) {
+	public Game(String name, Profile uploader, double rating, ArrayList<String> comments, String description, ArrayList<String> previews, genre g, platform p) {
 		this.name = name;
 		this.uploader = uploader;
 		this.rating = rating;
@@ -29,22 +37,26 @@ public class Game implements Serializable {
 		this.description = description;
 		//this.previews = new ArrayList<String>(previews);
 		this.previews = previews;
-		this.platform = platform;
-		this.genre = genre;
+		this.g = g;
+		this.p = p;
 	}
 	
 	public Game() {
-		this("",null,0.0,new ArrayList<String>(),"",new ArrayList<String>(),"","");
+		this("",null,0.0,new ArrayList<String>(),"",new ArrayList<String>(),null,null);
 	}
 	
-	public Game(String name,Profile uploader, String description, ArrayList<String> previews,String platform,String genre) {
-		this(name,uploader, 0.0, null, description, previews,platform,genre);
+	public Game(String name,Profile uploader, String description, ArrayList<String> previews, genre g,platform p) {
+		this(name,uploader, 0.0, null, description, previews,g,p);
 	}
 	
-	public Game(String name,String description,String platform,String genre){
-		this(name,new Profile(),0.0,null,description,null,platform,genre);
+	public Game(String name,Profile uploader, String description, ArrayList<String> previews) {
+		this(name,uploader, 0.0, null, description, previews,null,null);
 	}
 	
+	public Game(String name,String description,genre g,platform p) {
+		this(name,null,0.0,null,description,null,g,p);
+	}
+
 	public boolean comment(Profile commenter, String newComment) {
 		return false;
 	}

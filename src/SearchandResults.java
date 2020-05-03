@@ -48,38 +48,39 @@ public class SearchandResults extends JFrame{
 	
 	private static Game[] games = {	new Game("League of Legends",
 										"",
-										"Windows",
-										"MOBA"),
+										genre.MOBA,
+										platform.WINDOWS),
 								new Game("Valorant",
 										"",
-										"Windows",
-										"FPS"),
+										genre.FPS,
+										platform.WINDOWS),
 								new Game("Super Mario Bros",
 										"",
-										"All",
-										"Platformer"),
+										genre.PLATFORMER,
+										platform.ALL),
 								new Game("World of Warcraft",
 										"",
-										"All",
-										"MMO")};
+										genre.MMO,
+										platform.ALL)};
 	
+	private Game blank = new Game();
 	private static GameStorage gs = GameStorage.getInstance();
 	private static boolean added = gs.storeGame(new Game("League of Legends",
 										"",
-										"Windows",
-										"MOBA"));
+										genre.MOBA,
+										platform.WINDOWS));
 	private static boolean added1 = gs.storeGame(new Game("Valorant",
 			"",
-			"Windows",
-			"FPS"));
+			genre.FPS,
+			platform.WINDOWS));
 	private static boolean added2 = gs.storeGame(new Game("Super Mario Bros",
 			"",
-			"All",
-			"Platformer"));
+			genre.PLATFORMER,
+			platform.ALL));
 	private static boolean added3 = gs.storeGame(new Game("World of Warcraft",
 			"",
-			"All",
-			"MMO"));
+			genre.MMO,
+			platform.ALL));
 	private static Game[]  allGames = gs.toArray();
 	private Game[] searchGames = allGames;
 
@@ -135,9 +136,9 @@ public class SearchandResults extends JFrame{
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		String s2[] = { "-------","Windows", "Mac", "Linux", "All"};
+		platform s2[] = {null,platform.WINDOWS, platform.MAC, platform.LINUX, platform.ALL};
 		
-		String s1[] = { "-------","FPS", "RPG", "MMO", "MOBA","Platformer","Puzzle"};
+		genre s1[] = {null,genre.FPS, genre.RPG, genre.MMO, genre.MOBA,genre.PLATFORMER,genre.PUZZLE};
 		
 		String s0[] = { "-------","this week", "this month", "this year", "all time"};
 		
@@ -209,14 +210,14 @@ public class SearchandResults extends JFrame{
 		btnNewButton_3 = new JButton("Search");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String genre = (String)comboBoxGenre.getSelectedItem();
-				String platform = (String)comboBoxPlatform.getSelectedItem();
+				genre gen = (genre) comboBoxGenre.getSelectedItem();
+				platform plat = (platform) comboBoxPlatform.getSelectedItem();
 				String substring = txtWord.getText();
 				Game[] searches = new Game[allGames.length];
 				int count = 0;
 				for(Game g : allGames){
-					if(g.getGenre().equals(genre) || genre.contains("-")){ 
-						if(g.getPlatform().equals(platform) || genre.contains("-")){
+					if(g.getGenre().equals(gen) || gen == null){ 
+						if(g.getPlatform().equals(plat) || gen == null){
 							if(g.getName().contains(substring)){
 								searches[count] = g;
 								count++;
