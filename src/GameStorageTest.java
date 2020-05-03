@@ -92,5 +92,14 @@ class GameStorageTest {
 		assertTrue(GameStorage.getInstance().toArray().length == 2);
 		assertTrue(GameStorage.getInstance().toArray()[1].equals(testGame2));
 	}
+	
+	@Test
+	void testLoadFromCSV() {
+		GameStorage.getInstance().clear();
+		
+		GameStorage.getInstance().loadFromCSV("gamedata.csv", false);
+				
+		assertTrue(GameStorage.getInstance().getGame("Kirk").getPlatform().equals("et"));
+	}
 
 }

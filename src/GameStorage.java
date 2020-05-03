@@ -1,10 +1,13 @@
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * A singleton class to store and retrieve Games from a backend.
@@ -91,6 +94,36 @@ public class GameStorage {
 		checkMapInstantiation();
 		
 		return gameMap.containsKey(name);
+	}
+	
+	/**
+	 * Loads in test game data from CSV. 
+	 * @param filename the name of the CSV file to load in
+	 * @param destructive whether the old file should be replaced or not
+	 * @return true if the operation is successful, false otherwise.
+	 */
+	public boolean loadFromCSV(String filename, boolean destructive) {
+		checkMapInstantiation();
+		if (destructive)
+			clear();
+		
+		try {
+			Scanner scanner = new Scanner(new File(filename));
+			
+			scanner.nextLine();
+			String line;
+			while (scanner.hasNextLine()) {
+				line = scanner.nextLine();
+				String[] props = line.split(",");
+				
+				storeGame(new Game(props[0], null, (Math.random() * 5), null, props[1], null, props[2], props[3]));
+			}
+			scanner.close();
+			return true;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	/**
