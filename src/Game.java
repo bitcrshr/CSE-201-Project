@@ -17,10 +17,12 @@ public class Game implements Serializable {
 	private ArrayList<String> comments;
 	private String description;
 	private ArrayList<String> previews;
-	private String platform;
-	private String genre;
+	//private String platform;
+	//private String genre;
+	private genre g;
+	private platform p;
 	
-	public Game(String name, Profile uploader, double rating, ArrayList<String> comments, String description, ArrayList<String> previews,String platform,String genre) {
+	public Game(String name, Profile uploader, double rating, ArrayList<String> comments, String description, ArrayList<String> previews, genre g, platform p) {
 		this.name = name;
 		this.uploader = uploader;
 		this.rating = rating;
@@ -29,22 +31,26 @@ public class Game implements Serializable {
 		this.description = description;
 		//this.previews = new ArrayList<String>(previews);
 		this.previews = previews;
-		this.platform = platform;
-		this.genre = genre;
+		this.g = g;
+		this.p = p;
 	}
 	
 	public Game() {
-		this("",null,0.0,new ArrayList<String>(),"",new ArrayList<String>(),"","");
+		this("",null,0.0,new ArrayList<String>(),"",new ArrayList<String>(),null,null);
 	}
 	
-	public Game(String name,Profile uploader, String description, ArrayList<String> previews,String platform,String genre) {
-		this(name,uploader, 0.0, null, description, previews,platform,genre);
+	public Game(String name,Profile uploader, String description, ArrayList<String> previews, genre g,platform p) {
+		this(name,uploader, 0.0, null, description, previews,g,p);
 	}
 	
-	public Game(String name,String description,String platform,String genre){
-		this(name,new Profile(),0.0,null,description,null,platform,genre);
+	public Game(String name,Profile uploader, String description, ArrayList<String> previews) {
+		this(name,uploader, 0.0, null, description, previews,null,null);
 	}
 	
+	public Game(String name,String description,genre g,platform p) {
+		this(name,null,0.0,null,description,null,g,p);
+	}
+
 	public boolean comment(Profile commenter, String newComment) {
 		return false;
 	}
@@ -109,20 +115,20 @@ public class Game implements Serializable {
 		return uploader;
 	}
 	
-	public String getPlatform() {
-		return platform;
+	public platform getPlatform() {
+		return p;
 	}
 	
-	public void setPlatform(String platform){
-		this.platform = platform;
+	public void setPlatform(platform p) {
+		this.p = p;
 	}
 	
-	public String getGenre(){
-		return genre;
+	public genre getGenre() {
+		return g;
 	}
 	
-	public void setGenre(String genre){
-		this.genre = genre;
+	public void setGenre(genre g) {
+		this.g = g;
 	}
 
 	@Override
@@ -131,9 +137,9 @@ public class Game implements Serializable {
 		int result = 1;
 		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
+		result = prime * result + ((g == null) ? 0 : g.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((platform == null) ? 0 : platform.hashCode());
+		result = prime * result + ((p == null) ? 0 : p.hashCode());
 		result = prime * result + ((previews == null) ? 0 : previews.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(rating);
@@ -161,20 +167,20 @@ public class Game implements Serializable {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (genre == null) {
-			if (other.genre != null)
+		if (g == null) {
+			if (other.g != null)
 				return false;
-		} else if (!genre.equals(other.genre))
+		} else if (!g.equals(other.g))
 			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (platform == null) {
-			if (other.platform != null)
+		if (p == null) {
+			if (other.p != null)
 				return false;
-		} else if (!platform.equals(other.platform))
+		} else if (!p.equals(other.p))
 			return false;
 		if (previews == null) {
 			if (other.previews != null)
