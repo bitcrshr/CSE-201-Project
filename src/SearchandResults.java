@@ -82,7 +82,7 @@ public class SearchandResults extends JFrame{
 			genre.MMO,
 			platform.ALL));
 	private static Game[]  allGames = gs.toArray();
-	private Game[] searchGames = allGames;
+	private Game[] searchGames = gs.toArray();
 
 	/**
 	 * Launch the application.
@@ -118,7 +118,7 @@ public class SearchandResults extends JFrame{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() {		
 		setBounds(100, 100, 700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);

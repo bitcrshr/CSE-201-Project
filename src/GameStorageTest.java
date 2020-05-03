@@ -12,8 +12,8 @@ class GameStorageTest {
 		new ArrayList<String>(),
 		"testDescription",
 		new ArrayList<String>(),
-		"",
-		""
+		genre.FPS,
+		platform.WINDOWS
 	);
 	
 	private Game testGame2 = new Game(
@@ -23,8 +23,8 @@ class GameStorageTest {
 			new ArrayList<String>(),
 			"testDescription2",
 			new ArrayList<String>(),
-			"",
-			""
+			genre.FPS,
+			platform.WINDOWS
 	);
 
 	@Test

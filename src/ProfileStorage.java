@@ -33,7 +33,9 @@ public class ProfileStorage {
 	/**
 	 * Private constructor to prevent outside instantiation.
 	 */
-	private ProfileStorage() {}
+	private ProfileStorage() {
+		loadFromCSV("profiledata.csv", true);
+	}
 	
 	/**
 	 * Returns the static instance of this class.
@@ -141,7 +143,7 @@ public class ProfileStorage {
 				line = scanner.nextLine();
 				String[] props = line.split(",");
 				
-				storeProfile(new Profile(props[0], props[1], false, new ArrayList<Game>(), props[2], (ImageIO.read(new URL("https://picusm.photos/500/500")))));
+				storeProfile(new Profile(props[0], props[1], false, new ArrayList<Game>(), props[2], (ImageIO.read(new URL("https://picsum.photos/500/500")))));
 			}
 			scanner.close();
 			return true;

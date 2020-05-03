@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -29,7 +30,9 @@ public class GameStorage {
 	/**
 	 * Private constructor to prevent outside instantiation.
 	 */
-	private GameStorage() {}
+	private GameStorage() {
+		loadFromCSV("gamedata.csv", true);
+	}
 	
 	/**
 	 * Returns the static instance of this class.
@@ -107,16 +110,22 @@ public class GameStorage {
 		if (destructive)
 			clear();
 		
+		Random random = new Random();
+		genre[] gvals = genre.values();
+		platform[] pvals = platform.values();
+		
 		try {
 			Scanner scanner = new Scanner(new File(filename));
 			
 			scanner.nextLine();
 			String line;
 			while (scanner.hasNextLine()) {
+				genre randGenre = gvals[random.nextInt(gvals.length)];
+				platform randPlatform = pvals[random.nextInt(pvals.length)];
 				line = scanner.nextLine();
 				String[] props = line.split(",");
 				
-				storeGame(new Game(props[0], null, (Math.random() * 5), null, props[1], null, props[2], props[3]));
+				storeGame(new Game(props[0], null, ((double) random.nextInt(5) / random.nextInt(5)), null, props[1], null, randGenre, randPlatform));
 			}
 			scanner.close();
 			return true;
