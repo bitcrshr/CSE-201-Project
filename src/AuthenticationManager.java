@@ -51,18 +51,21 @@ public class AuthenticationManager {
 	 * @param password the password
 	 * @return a Profile matching the username if the password is correct, and null otherwise
 	 */
-	public Profile signIn(String username, String password) {
+	public boolean signIn(String username, String password) {
 		Profile profile = ProfileStorage.getInstance().getProfile(username);
 		
 		if (profile == null)
-			return null;
+			//return null;
+			return false;
 		
 		if (!profile.getPassword().equals(password))
-			return null;
+			//return null;
+			return false;
 		
 		currentUser = profile;
 		
-		return new Profile(profile);
+		//return new Profile(profile);
+		return true;
 	}
 	
 	/**
@@ -76,7 +79,7 @@ public class AuthenticationManager {
 			return false;
 		}
 				
-		return ProfileStorage.getInstance().storeProfile(new Profile(username, password)) && (this.signIn(username, password) != null);
+		return ProfileStorage.getInstance().storeProfile(new Profile(username, password)) && (this.signIn(username, password));
 	}
 	
 	/**

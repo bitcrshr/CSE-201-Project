@@ -33,7 +33,7 @@ public class CreateProfilePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CreateProfilePage frame = new CreateProfilePage();
+					CreateProfilePage frame = new CreateProfilePage(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,14 +45,7 @@ public class CreateProfilePage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CreateProfilePage() {
-		
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(100, 100, 450, 300);
-		//contentPane = new JPanel();
-		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//contentPane.setLayout(new BorderLayout(0, 0));
-		//setContentPane(contentPane);
+	public CreateProfilePage(boolean newProfile) {
 		
 		getContentPane().setFont(new Font("Monaco", Font.PLAIN, 13));
 		getContentPane().setBackground(new Color(51, 255, 204));
@@ -113,38 +106,54 @@ public class CreateProfilePage extends JFrame {
 		panel.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblConfirmPassowrd = new JLabel("Confirm Password:");
-		GridBagConstraints gbc_lblConfirmPassword = new GridBagConstraints();
-		gbc_lblConfirmPassword.anchor = GridBagConstraints.EAST;
-		gbc_lblConfirmPassword.insets = new Insets(0, 0, 5, 5);
-		gbc_lblConfirmPassword.gridx = 2;
-		gbc_lblConfirmPassword.gridy = 6;
-		panel.add(lblConfirmPassowrd, gbc_lblConfirmPassword);
+		if (newProfile){
+			JLabel lblConfirmPassowrd = new JLabel("Confirm Password:");
+			GridBagConstraints gbc_lblConfirmPassword = new GridBagConstraints();
+			gbc_lblConfirmPassword.anchor = GridBagConstraints.EAST;
+			gbc_lblConfirmPassword.insets = new Insets(0, 0, 5, 5);
+			gbc_lblConfirmPassword.gridx = 2;
+			gbc_lblConfirmPassword.gridy = 6;
+			panel.add(lblConfirmPassowrd, gbc_lblConfirmPassword);
 		
-		textField_2 = new JTextField();
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_2.gridx = 3;
-		gbc_textField_2.gridy = 6;
-		panel.add(textField_2, gbc_textField_2);
-		textField_2.setColumns(10);
+			textField_2 = new JTextField();
+			GridBagConstraints gbc_textField_2 = new GridBagConstraints();
+			gbc_textField_2.insets = new Insets(0, 0, 5, 5);
+			gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
+			gbc_textField_2.gridx = 3;
+			gbc_textField_2.gridy = 6;
+			panel.add(textField_2, gbc_textField_2);
+			textField_2.setColumns(10);
+		}
 		
-		JButton btnCreateProfile = new JButton("Create Profile");
+		String buttonLabel = (newProfile) ? "Create Profile" : "Login";
+		JButton btnCreateProfile = new JButton(buttonLabel);
 		btnCreateProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = textField.getText();
 				String password = textField_1.getText();
-				
-				if(AuthenticationManager.getInstance().signUp(username, password)) {
-					SearchandResults s = new SearchandResults();
-					s.setVisible(true);
-					setVisible(false);
+				if(newProfile) {
+					if(AuthenticationManager.getInstance().signUp(username, password)) {
+						SearchandResults s = new SearchandResults();
+						s.setVisible(true);
+						setVisible(false);
+					} else {
+						JOptionPane.showMessageDialog(null,
+							    "Sign up failed. Please try again.",
+							    "Inane warning",
+							    JOptionPane.WARNING_MESSAGE);
+					}
 				} else {
-					JOptionPane.showMessageDialog(null,
-						    "Sign up failed. Please try again.",
-						    "Inane warning",
-						    JOptionPane.WARNING_MESSAGE);
+					//sign in
+					if(AuthenticationManager.getInstance().signIn(username, password)) {
+						SearchandResults s = new SearchandResults();
+						s.setVisible(true);
+						setVisible(false);
+					} else {
+						JOptionPane.showMessageDialog(null,
+							    "Login failed. Please try again.",
+							    "Inane warning",
+							    JOptionPane.WARNING_MESSAGE);
+					}
 				}
 			}
 		});

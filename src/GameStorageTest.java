@@ -12,8 +12,8 @@ class GameStorageTest {
 		new ArrayList<String>(),
 		"testDescription",
 		new ArrayList<String>(),
-		genre.FPS,
-		platform.WINDOWS
+		genre.ALL,
+		platform.ALL
 	);
 	
 	private Game testGame2 = new Game(
@@ -23,8 +23,8 @@ class GameStorageTest {
 			new ArrayList<String>(),
 			"testDescription2",
 			new ArrayList<String>(),
-			genre.FPS,
-			platform.WINDOWS
+			genre.ALL,
+			platform.ALL
 	);
 
 	@Test
@@ -91,15 +91,6 @@ class GameStorageTest {
 		GameStorage.getInstance().storeGame(testGame2);
 		assertTrue(GameStorage.getInstance().toArray().length == 2);
 		assertTrue(GameStorage.getInstance().toArray()[1].equals(testGame2));
-	}
-	
-	@Test
-	void testLoadFromCSV() {
-		GameStorage.getInstance().clear();
-		
-		GameStorage.getInstance().loadFromCSV("gamedata.csv", false);
-				
-		assertTrue(GameStorage.getInstance().getGame("Kirk").getPlatform().equals("et"));
 	}
 
 }

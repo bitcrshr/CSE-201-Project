@@ -13,6 +13,12 @@ public class DownloadGame {
 	String[] gamelist = new String[999]; 
 	static int downloadCount;
 	
+	//Download Game Constructor
+	public DownloadGame(String gameLink, String gameName) {
+		this.gameLink = gameLink;
+		this.gameName = gameName;
+	}
+	
 	//fetch the link from database
 	public String getLinkfromDatabase() {
 		//the code still needs to be implemented to fetch the link

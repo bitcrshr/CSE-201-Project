@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Game implements Serializable {
 	/**
-	 * 
+	 * Variable for the Game class
 	 */
 	private String name;
 	private static final long serialVersionUID = 6746977338198319164L;
@@ -17,24 +17,26 @@ public class Game implements Serializable {
 	private ArrayList<String> comments;
 	private String description;
 	private ArrayList<String> previews;
-	//private String platform;
-	//private String genre;
 	private genre g;
 	private platform p;
 	
+	/*
+	 * Constructors for the Game Class
+	 */
+	
+	// Workhorse constructor
 	public Game(String name, Profile uploader, double rating, ArrayList<String> comments, String description, ArrayList<String> previews, genre g, platform p) {
 		this.name = name;
 		this.uploader = uploader;
 		this.rating = rating;
-		//this.comments = new ArrayList<String>(comments);
 		this.comments = comments;
 		this.description = description;
-		//this.previews = new ArrayList<String>(previews);
 		this.previews = previews;
 		this.g = g;
 		this.p = p;
 	}
 	
+	//Empty constructor
 	public Game() {
 		this("",null,0.0,new ArrayList<String>(),"",new ArrayList<String>(),null,null);
 	}

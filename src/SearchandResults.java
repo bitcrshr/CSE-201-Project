@@ -118,7 +118,7 @@ public class SearchandResults extends JFrame{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {		
+	private void initialize() {
 		setBounds(100, 100, 700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -135,10 +135,6 @@ public class SearchandResults extends JFrame{
 		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		
-		//platform s2[] = {null,platform.WINDOWS, platform.MAC, platform.LINUX, platform.ALL};
-		
-		//genre s1[] = {null,genre.FPS, genre.RPG, genre.MMO, genre.MOBA,genre.PLATFORMER,genre.PUZZLE};
 		
 		String s0[] = { "-------","this week", "this month", "this year", "all time"};
 		
@@ -158,14 +154,6 @@ public class SearchandResults extends JFrame{
 		gbc_lblNewLabel_2.gridy = 0;
 		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		//lblNewLabel_3 = new JLabel("Popularity");
-		//lblNewLabel_3.setForeground(new Color(255, 51, 255));
-		//GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
-		//gbc_lblNewLabel_3.insets = new Insets(0, 0, 5, 5);
-		//gbc_lblNewLabel_3.gridx = 3;
-		//gbc_lblNewLabel_3.gridy = 0;
-		//panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
-		
 		JLabel lblNewLabel = new JLabel("Advanced Search");
 		lblNewLabel.setForeground(new Color(255, 0, 153));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -174,13 +162,6 @@ public class SearchandResults extends JFrame{
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 1;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
-		//comboBoxTime = new JComboBox(s0);
-		//GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
-		//gbc_comboBox_2.insets = new Insets(0, 0, 5, 5);
-		//gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
-		//gbc_comboBox_2.gridx = 3;
-		//gbc_comboBox_2.gridy = 1;
-		//panel.add(comboBoxTime, gbc_comboBox_2);
 		comboBoxGenre = new JComboBox(genre.values());
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
@@ -359,15 +340,9 @@ public class SearchandResults extends JFrame{
 			btnLogin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					AuthenticationManager.getInstance().signOut();
-					lblUserName = new JLabel("Username: none");
-					btnLogin = new JButton("Login");
-					btnLogin.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							LoginPage l = new LoginPage();
-							l.setVisible(true);
-							setVisible(false);
-						}
-					});
+					SearchandResults s = new SearchandResults();
+					s.setVisible(true);
+					setVisible(false);
 				}
 			});
 			

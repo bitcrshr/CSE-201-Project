@@ -71,7 +71,7 @@ public class LoginPage extends JFrame{
 		btnNewButton_1.setForeground(new Color(102, 0, 204));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CreateProfilePage p = new CreateProfilePage();
+				CreateProfilePage p = new CreateProfilePage(true);
 				p.setVisible(true);
 				setVisible(false);
 			}
@@ -81,8 +81,8 @@ public class LoginPage extends JFrame{
 		btnNewButton.setForeground(new Color(102, 0, 204));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SearchandResults s = new SearchandResults();
-				s.setVisible(true);
+				CreateProfilePage p = new CreateProfilePage(false);
+				p.setVisible(true);
 				setVisible(false);
 			}
 		});
