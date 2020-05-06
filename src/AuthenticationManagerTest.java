@@ -14,9 +14,9 @@ class AuthenticationManagerTest {
 	void testSignIn() {
 		AuthenticationManager.getInstance().signUp("username", "password");
 		
-		assertTrue(AuthenticationManager.getInstance().signIn("username", "password") != null);
-		assertTrue(AuthenticationManager.getInstance().signIn("username", "wrongpassword") == null);
-		assertTrue(AuthenticationManager.getInstance().signIn("DNE", "fake") == null);
+		assertTrue(AuthenticationManager.getInstance().signIn("username", "password"));
+		assertFalse(AuthenticationManager.getInstance().signIn("username", "wrongpassword"));
+		assertFalse(AuthenticationManager.getInstance().signIn("DNE", "fake"));
 		
 		AuthenticationManager.getInstance().signOut();
 	}
@@ -26,7 +26,7 @@ class AuthenticationManagerTest {
 		String randomString = String.valueOf(Math.random());
 		
 		assertTrue(AuthenticationManager.getInstance().signUp(randomString, "newpassword"));
-		assertTrue(AuthenticationManager.getInstance().signIn(randomString, "newpassword") != null);
+		assertFalse(AuthenticationManager.getInstance().signIn(randomString, "newpassword"));
 	}
 
 	@Test

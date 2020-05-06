@@ -6,7 +6,7 @@ public class CreateProfilePageTest {
 
 	@Test
 	public void createProfilePageTest() {
-		CreateProfilePage page = new CreateProfilePage();
+		CreateProfilePage page = new CreateProfilePage(false);
 		page.setVisible(true);
 		
 		while(page.getProfile() == null) {}
