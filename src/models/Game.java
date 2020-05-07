@@ -33,7 +33,7 @@ public class Game implements Serializable {
 		this.comments = comments;
 		this.description = description;
 		//this.previews = new ArrayList<String>(previews);
-		this.previewLink = (previewLink == null) ? "https://picsum.photos/50/50" : previewLink;
+		this.previewLink = (previewLink == null) ? "https://picsum.photos/seed/" + name + "/300/300" : previewLink;
 		this.g = g;
 		this.p = p;
 	}

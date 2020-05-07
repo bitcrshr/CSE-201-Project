@@ -2,11 +2,14 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import io.AuthenticationManager;
+import io.GameStorage;
 import models.Game;
 
 import java.awt.GridBagLayout;
@@ -18,6 +21,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -72,7 +76,15 @@ public class GamePage extends JFrame {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 		
-		ImageIcon icon = new ImageIcon("League.jpg");
+		ImageIcon icon;
+		
+		try {
+			icon = new ImageIcon(ImageIO.read(new URL(game.getPreviewLink())));
+		} catch (Exception e) {
+			e.printStackTrace();
+			icon = new ImageIcon("League.jpg");
+		}
+		
 		Image image = icon.getImage();
 		Image newimg = image.getScaledInstance(300,300, java.awt.Image.SCALE_SMOOTH);
 		icon = new ImageIcon(newimg);
@@ -110,12 +122,28 @@ public class GamePage extends JFrame {
 		gbc_lblRating.gridy = 2;
 		getContentPane().add(lblRating, gbc_lblRating);
 		
-		JLabel lblscore = new JLabel("[Score]");
+		JLabel lblscore = new JLabel("" + game.getRating());
 		GridBagConstraints gbc_lblscore = new GridBagConstraints();
 		gbc_lblscore.insets = new Insets(0, 0, 5, 0);
 		gbc_lblscore.gridx = 2;
 		gbc_lblscore.gridy = 3;
 		getContentPane().add(lblscore, gbc_lblscore);
+		
+		JLabel lblPlatform = new JLabel(game.getPlatform().toString());
+		GridBagConstraints gbc_lblPlatform = new GridBagConstraints();
+		gbc_lblPlatform.insets = new Insets(0, 0, 5, 0);
+		gbc_lblPlatform.gridx = 2;
+		gbc_lblPlatform.gridy = 4;
+		getContentPane().add(lblPlatform, gbc_lblPlatform);
+		
+		JLabel lblGenre = new JLabel(game.getGenre().toString());
+		GridBagConstraints gbc_lblGenre = new GridBagConstraints();
+		gbc_lblGenre.insets = new Insets(0, 0, 5, 0);
+		gbc_lblGenre.gridx = 2;
+		gbc_lblGenre.gridy = 5;
+		getContentPane().add(lblGenre, gbc_lblGenre);
+		
+		
 		
 		String[] ratings = {"Score 1-5 (1 = worst 5 = best)","1","2","3","4","5"};
 		JLabel label = new JLabel(icon);
@@ -170,6 +198,24 @@ public class GamePage extends JFrame {
 		gbc_btnSubmit.gridx = 2;
 		gbc_btnSubmit.gridy = 9;
 		getContentPane().add(btnSubmit, gbc_btnSubmit);
+		
+		if (AuthenticationManager.getInstance().currentUser().getAdmin()) {
+			JButton deleteButton = new JButton("Delete");
+			deleteButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					GameStorage.getInstance().deleteGame(game.getName());
+					setVisible(false);
+					(new SearchandResults(GameStorage.getInstance().toArray())).setVisible(true);;
+				}
+			});
+			
+			GridBagConstraints gbc_btnDelete = new GridBagConstraints();
+			gbc_btnDelete.insets = new Insets(0, 0, 5, 0);
+			gbc_btnDelete.gridx = 2;
+			gbc_btnDelete.gridy = 10;
+			getContentPane().add(deleteButton, gbc_btnDelete);
+		}
 		
 		JLabel lblNewLabel = new JLabel("[Comments]");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();

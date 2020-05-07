@@ -246,7 +246,8 @@ public class SearchandResults extends JFrame{
 		
 		int count = 0;
 		int yOffset = 0;
-		for(Game g : searchGames){
+		for(int i = 0; i < ((searchGames.length >= 6) ? 6 : searchGames.length); i++){
+			Game g = searchGames[i];
 			
 			JLabel gameLabel = new JLabel(g.getName());
 			GridBagConstraints gbc_gameLabel = new GridBagConstraints();
@@ -263,7 +264,7 @@ public class SearchandResults extends JFrame{
 				icon = new ImageIcon("League.jpg");
 			}
 			Image image = icon.getImage();
-			Image newimg = image.getScaledInstance(150,150, java.awt.Image.SCALE_SMOOTH);
+			Image newimg = image.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
 			icon = new ImageIcon(newimg);
 			JLabel picture = new JLabel(icon);
 			GridBagConstraints gbc_picture = new GridBagConstraints();

@@ -115,22 +115,21 @@ public class GameStorage {
 		if (destructive)
 			clear();
 		
-		Random random = new Random();
-		genre[] gvals = genre.values();
-		platform[] pvals = platform.values();
+		
 		
 		try {
 			Scanner scanner = new Scanner(new File(filename));
 			
+			platform[] pvals = platform.values();
+			genre[] gvals = genre.values();
+			
 			scanner.nextLine();
 			String line;
 			while (scanner.hasNextLine()) {
-				genre randGenre = gvals[random.nextInt(gvals.length)];
-				platform randPlatform = pvals[random.nextInt(pvals.length)];
 				line = scanner.nextLine();
 				String[] props = line.split(",");
 				
-				storeGame(new Game(props[0], null, ((double) random.nextInt(5) / random.nextInt(5)), null, props[1], null, randGenre, randPlatform));
+				storeGame(new Game(props[0], null, Double.valueOf(props[4]), null, props[1], null, gvals[Integer.valueOf(props[3])], pvals[Integer.valueOf(props[2])]));
 			}
 			scanner.close();
 			return true;

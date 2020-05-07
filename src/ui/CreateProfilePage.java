@@ -69,7 +69,7 @@ public class CreateProfilePage extends JFrame {
 		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
-		JLabel lblCreateAProfile = new JLabel("Create A Profile");
+		JLabel lblCreateAProfile = new JLabel((newProfile) ? "Create A Profile" : "Sign In");
 		lblCreateAProfile.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblCreateAProfile = new GridBagConstraints();
 		gbc_lblCreateAProfile.insets = new Insets(0, 0, 5, 5);
@@ -137,6 +137,21 @@ public class CreateProfilePage extends JFrame {
 				String username = textField.getText();
 				String password = textField_1.getText();
 				if (newProfile) {
+					
+					String verifyPassword = (textField_2 == null) ? "" : textField_2.getText();
+
+					if (username.contentEquals("") || password.contentEquals("")) {
+						JOptionPane.showMessageDialog(null, "Please enter your information", "Empty fields",
+								JOptionPane.WARNING_MESSAGE);
+						return;
+					}
+
+					if (!password.contentEquals(verifyPassword)) {
+						JOptionPane.showMessageDialog(null, "Passwords do not match. Please try again",
+								"Password mismatch", JOptionPane.WARNING_MESSAGE);
+						return;
+					}
+					
 					if (AuthenticationManager.getInstance().signUp(username, password)) {
 						SearchandResults s = new SearchandResults();
 						s.setVisible(true);
@@ -154,30 +169,8 @@ public class CreateProfilePage extends JFrame {
 					} else {
 						JOptionPane.showMessageDialog(null, "Login failed. Please try again.", "Login failed.",
 								JOptionPane.WARNING_MESSAGE);
-						return;
 					}
-					String verifyPassword = (textField_2 == null) ? "" : textField_2.getText();
-
-					if (username.contentEquals("") || password.contentEquals("")) {
-						JOptionPane.showMessageDialog(null, "Please enter your information", "Empty fields",
-								JOptionPane.WARNING_MESSAGE);
-						return;
-					}
-
-					if (!password.contentEquals(verifyPassword)) {
-						JOptionPane.showMessageDialog(null, "Passwords do not match. Please try again",
-								"Password mismatch", JOptionPane.WARNING_MESSAGE);
-						return;
-					}
-
-					if (AuthenticationManager.getInstance().signUp(username, password)) {
-						SearchandResults s = new SearchandResults();
-						s.setVisible(true);
-						setVisible(false);
-					} else {
-						JOptionPane.showMessageDialog(null, "Sign up failed. Please try again.", "Sign in failure",
-								JOptionPane.WARNING_MESSAGE);
-					}
+					
 				}
 			}
 		});
