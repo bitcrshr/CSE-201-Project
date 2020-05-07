@@ -1,3 +1,4 @@
+package io;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -7,6 +8,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import models.Game;
+import models.Profile;
 
 /**
  * A singleton class to store and retrieve Profiles from a backend.

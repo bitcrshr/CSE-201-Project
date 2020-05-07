@@ -1,6 +1,10 @@
+package tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import io.ProfileStorage;
+import models.Profile;
 
 class ProfileStorageTest {
 

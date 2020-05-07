@@ -1,8 +1,17 @@
+package ui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import io.AuthenticationManager;
+import io.GameStorage;
+import models.Game;
+import models.Profile;
+import models.genre;
+import models.platform;
+
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.Image;

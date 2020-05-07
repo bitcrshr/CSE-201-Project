@@ -1,3 +1,6 @@
+package io;
+import models.Profile;
+
 /**
  * A singleton class to handle all authentication.
  * @author Chandler Davis (davisc10)
@@ -38,7 +41,7 @@ public class AuthenticationManager {
 	 * @return true if successful, false otherwise.
 	 */
 	public boolean updateProfile(Profile updatedProfile) {
-		if (currentUser != null && updatedProfile.userName.equals(currentUser.userName)) {
+		if (currentUser != null && updatedProfile.getUserName().equals(currentUser.getUserName())) {
 			return ProfileStorage.getInstance().storeProfile(updatedProfile);
 		}
 		

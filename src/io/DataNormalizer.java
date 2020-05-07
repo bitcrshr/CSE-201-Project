@@ -1,8 +1,14 @@
+package io;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+/**
+ * A class to do data normalization with. Not consistent between uses.
+ * @author Chandler Davis
+ *
+ */
 public class DataNormalizer {
 	
 	public static void main(String[] args) {

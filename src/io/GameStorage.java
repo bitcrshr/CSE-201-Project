@@ -1,3 +1,4 @@
+package io;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,6 +10,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
+
+import models.Game;
+import models.genre;
+import models.platform;
 
 /**
  * A singleton class to store and retrieve Games from a backend.
@@ -46,7 +51,7 @@ public class GameStorage {
 	}
 	
 	/**
-	 * Clears the backend of all Games. This cannot be done.
+	 * Clears the backend of all Games. This cannot be undone.
 	 */
 	public void clear() {
 		gameMap = null;

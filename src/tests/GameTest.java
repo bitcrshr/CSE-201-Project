@@ -1,6 +1,12 @@
+package tests;
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.Test;
+
+import models.Game;
+import models.Profile;
+import models.genre;
+import models.platform;
 
 import java.util.ArrayList;
 

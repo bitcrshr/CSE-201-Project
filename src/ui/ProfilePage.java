@@ -1,3 +1,4 @@
+package ui;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -11,6 +12,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import io.AuthenticationManager;
+import models.Profile;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;

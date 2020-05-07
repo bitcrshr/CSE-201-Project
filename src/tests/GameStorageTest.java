@@ -1,8 +1,16 @@
+package tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
+
+import io.GameStorage;
+import io.ProfileStorage;
+import models.Game;
+import models.Profile;
+import models.genre;
+import models.platform;
 
 class GameStorageTest {
 	private Game testGame1 = new Game(

@@ -1,6 +1,9 @@
+package tests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import ui.CreateProfilePage;
 
 public class CreateProfilePageTest {
 
@@ -11,7 +14,7 @@ public class CreateProfilePageTest {
 		
 		while(page.getProfile() == null) {}
 		
-		assertTrue(page.getProfile().userName.equals("hello"));
+		assertTrue(page.getProfile().getUserName().equals("hello"));
 		
 	}
 

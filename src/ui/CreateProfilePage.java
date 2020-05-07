@@ -1,3 +1,4 @@
+package ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -6,6 +7,10 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import io.AuthenticationManager;
+import models.Profile;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -147,10 +152,11 @@ public class CreateProfilePage extends JFrame {
 						s.setVisible(true);
 						setVisible(false);
 					} else {
-						JOptionPane.showMessageDialog(null, "Login failed. Please try again.", "Inane warning",
+						JOptionPane.showMessageDialog(null, "Login failed. Please try again.", "Login failed.",
 								JOptionPane.WARNING_MESSAGE);
+						return;
 					}
-					String verifyPassword = textField_2.getText();
+					String verifyPassword = (textField_2 == null) ? "" : textField_2.getText();
 
 					if (username.contentEquals("") || password.contentEquals("")) {
 						JOptionPane.showMessageDialog(null, "Please enter your information", "Empty fields",
