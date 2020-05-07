@@ -12,8 +12,8 @@ class GameTest {
 		String gameName = "League of Legends";
 		Profile myprofile = new Profile("tester","mypassword");
 		ArrayList<String> mycomments = new ArrayList<String>();
-		ArrayList<String> mypreviews = new ArrayList<String>();
-		Game mygame = new Game(gameName,myprofile, 20.1, mycomments,"description", mypreviews,genre.ALL,platform.ALL);
+		String mypreview = "";
+		Game mygame = new Game(gameName,myprofile, 20.1, mycomments,"description", mypreview, genre.ALL, platform.WINDOWS);
 		assertTrue(mygame.comment(myprofile, "newComment"));
 		assertTrue(mygame.delete(myprofile, "newComment"));
 		assertTrue(mygame.editOwnComment(myprofile, "oldComment","newComment"));
@@ -27,10 +27,10 @@ class GameTest {
 		assertTrue(mygame.getComments() == newcomments);
 		
 		assertTrue(mygame.getDescription() == "description");
-		assertTrue(mygame.getPreviews() == mypreviews);
+		assertTrue(mygame.getPreviewLink() == mypreview);
 		ArrayList<String> previewscomments = new ArrayList<String>();
-		mygame.setPreviews(previewscomments);
-		assertTrue(mygame.getPreviews() == previewscomments);
+//		mygame.setPreviewLink(previewscomments);
+//		assertTrue(mygame.getPreviewLink() == previewscomments);
 		assertTrue(mygame.getUploader() == myprofile);
 		
 		

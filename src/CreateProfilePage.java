@@ -23,7 +23,7 @@ public class CreateProfilePage extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	
+
 	Profile p;
 
 	/**
@@ -46,24 +46,24 @@ public class CreateProfilePage extends JFrame {
 	 * Create the frame.
 	 */
 	public CreateProfilePage(boolean newProfile) {
-		
+
 		getContentPane().setFont(new Font("Monaco", Font.PLAIN, 13));
 		getContentPane().setBackground(new Color(51, 255, 204));
-		setBounds(100, 100,  700, 700);
+		setBounds(100, 100, 700, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(6, 185, 688, 296);
 		panel.setBackground(new Color(255, 255, 204));
 		getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 121, 0, 276, 289, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 25, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWidths = new int[] { 0, 121, 0, 276, 289, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 25, 0, 0 };
+		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
+
 		JLabel lblCreateAProfile = new JLabel("Create A Profile");
 		lblCreateAProfile.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblCreateAProfile = new GridBagConstraints();
@@ -71,7 +71,7 @@ public class CreateProfilePage extends JFrame {
 		gbc_lblCreateAProfile.gridx = 3;
 		gbc_lblCreateAProfile.gridy = 1;
 		panel.add(lblCreateAProfile, gbc_lblCreateAProfile);
-		
+
 		JLabel lblUserName = new JLabel("User name:");
 		GridBagConstraints gbc_lblUserName = new GridBagConstraints();
 		gbc_lblUserName.anchor = GridBagConstraints.EAST;
@@ -79,7 +79,7 @@ public class CreateProfilePage extends JFrame {
 		gbc_lblUserName.gridx = 2;
 		gbc_lblUserName.gridy = 2;
 		panel.add(lblUserName, gbc_lblUserName);
-		
+
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
@@ -88,7 +88,7 @@ public class CreateProfilePage extends JFrame {
 		gbc_textField.gridy = 2;
 		panel.add(textField, gbc_textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblPassword = new JLabel("Password:");
 		GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 		gbc_lblPassword.anchor = GridBagConstraints.EAST;
@@ -96,7 +96,7 @@ public class CreateProfilePage extends JFrame {
 		gbc_lblPassword.gridx = 2;
 		gbc_lblPassword.gridy = 4;
 		panel.add(lblPassword, gbc_lblPassword);
-		
+
 		textField_1 = new JTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
@@ -105,8 +105,8 @@ public class CreateProfilePage extends JFrame {
 		gbc_textField_1.gridy = 4;
 		panel.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
-		
-		if (newProfile){
+
+		if (newProfile) {
 			JLabel lblConfirmPassowrd = new JLabel("Confirm Password:");
 			GridBagConstraints gbc_lblConfirmPassword = new GridBagConstraints();
 			gbc_lblConfirmPassword.anchor = GridBagConstraints.EAST;
@@ -114,7 +114,7 @@ public class CreateProfilePage extends JFrame {
 			gbc_lblConfirmPassword.gridx = 2;
 			gbc_lblConfirmPassword.gridy = 6;
 			panel.add(lblConfirmPassowrd, gbc_lblConfirmPassword);
-		
+
 			textField_2 = new JTextField();
 			GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 			gbc_textField_2.insets = new Insets(0, 0, 5, 5);
@@ -124,35 +124,53 @@ public class CreateProfilePage extends JFrame {
 			panel.add(textField_2, gbc_textField_2);
 			textField_2.setColumns(10);
 		}
-		
+
 		String buttonLabel = (newProfile) ? "Create Profile" : "Login";
 		JButton btnCreateProfile = new JButton(buttonLabel);
 		btnCreateProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = textField.getText();
 				String password = textField_1.getText();
-				if(newProfile) {
-					if(AuthenticationManager.getInstance().signUp(username, password)) {
+				if (newProfile) {
+					if (AuthenticationManager.getInstance().signUp(username, password)) {
 						SearchandResults s = new SearchandResults();
 						s.setVisible(true);
 						setVisible(false);
 					} else {
-						JOptionPane.showMessageDialog(null,
-							    "Sign up failed. Please try again.",
-							    "Inane warning",
-							    JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Sign up failed. Please try again.", "Inane warning",
+								JOptionPane.WARNING_MESSAGE);
 					}
 				} else {
-					//sign in
-					if(AuthenticationManager.getInstance().signIn(username, password)) {
+					// sign in
+					if (AuthenticationManager.getInstance().signIn(username, password)) {
 						SearchandResults s = new SearchandResults();
 						s.setVisible(true);
 						setVisible(false);
 					} else {
-						JOptionPane.showMessageDialog(null,
-							    "Login failed. Please try again.",
-							    "Inane warning",
-							    JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Login failed. Please try again.", "Inane warning",
+								JOptionPane.WARNING_MESSAGE);
+					}
+					String verifyPassword = textField_2.getText();
+
+					if (username.contentEquals("") || password.contentEquals("")) {
+						JOptionPane.showMessageDialog(null, "Please enter your information", "Empty fields",
+								JOptionPane.WARNING_MESSAGE);
+						return;
+					}
+
+					if (!password.contentEquals(verifyPassword)) {
+						JOptionPane.showMessageDialog(null, "Passwords do not match. Please try again",
+								"Password mismatch", JOptionPane.WARNING_MESSAGE);
+						return;
+					}
+
+					if (AuthenticationManager.getInstance().signUp(username, password)) {
+						SearchandResults s = new SearchandResults();
+						s.setVisible(true);
+						setVisible(false);
+					} else {
+						JOptionPane.showMessageDialog(null, "Sign up failed. Please try again.", "Sign in failure",
+								JOptionPane.WARNING_MESSAGE);
 					}
 				}
 			}
@@ -162,15 +180,15 @@ public class CreateProfilePage extends JFrame {
 		gbc_btnCreateProfile.gridx = 3;
 		gbc_btnCreateProfile.gridy = 8;
 		panel.add(btnCreateProfile, gbc_btnCreateProfile);
-		
+
 	}
-	
-	public Profile createProfile(String username,String password){
-		p = new Profile(username,password);
+
+	public Profile createProfile(String username, String password) {
+		p = new Profile(username, password);
 		return p;
 	}
-	
-	public Profile getProfile(){
+
+	public Profile getProfile() {
 		return p;
 	}
 }

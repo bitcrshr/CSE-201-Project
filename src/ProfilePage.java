@@ -6,12 +6,15 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 import java.awt.event.ActionEvent;
 
 public class ProfilePage extends JFrame {
@@ -75,14 +78,44 @@ public class ProfilePage extends JFrame {
 		gbc_btnBackToSearch.gridy = 1;
 		panel.add(btnBackToSearch, gbc_btnBackToSearch);
 		
-		JLabel lblNewLabel_2 = new JLabel("Profile Picture");
-		lblNewLabel_2.setForeground(new Color(255, 51, 204));
-		lblNewLabel_2.setBackground(Color.YELLOW);
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 2;
-		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
+
+		
+		try {
+			Image profilePicture = ImageIO.read(new URL(profile.getProfilePictureLink()));
+			ImageIcon icon = new ImageIcon(profilePicture);
+			Image newImage = profilePicture.getScaledInstance(75, 75, java.awt.Image.SCALE_SMOOTH);
+			icon = new ImageIcon(newImage);
+			JLabel profileLabel = new JLabel(icon);
+			GridBagConstraints profileGBC = new GridBagConstraints();
+			profileGBC.insets = new Insets(0, 0, 5, 5);
+			profileGBC.gridx = 0;
+			profileGBC.gridy = 2;
+			panel.add(profileLabel, profileGBC);
+			
+//			ImageIcon icon = new ImageIcon("League.jpg");
+//			Image image = icon.getImage();
+//			Image newimg = image.getScaledInstance(150,150, java.awt.Image.SCALE_SMOOTH);
+//			icon = new ImageIcon(newimg);
+//			JLabel lblNewLabel_7 = new JLabel(icon);
+//			GridBagConstraints gbc_lblNewLabel_7 = new GridBagConstraints();
+//			gbc_lblNewLabel_7.insets = new Insets(0, 0, 0, 5);
+//			gbc_lblNewLabel_7.gridx = 0;
+//			gbc_lblNewLabel_7.gridy = 1;
+//			panel_1.add(lblNewLabel_7, gbc_lblNewLabel_7);
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			JLabel lblNewLabel_2 = new JLabel("Profile Picture");
+			lblNewLabel_2.setForeground(new Color(255, 51, 204));
+			lblNewLabel_2.setBackground(Color.YELLOW);
+			GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+			gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+			gbc_lblNewLabel_2.gridx = 0;
+			gbc_lblNewLabel_2.gridy = 2;
+			panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		}
 		
 		JLabel lblNewLabel = new JLabel("User Name:");
 		lblNewLabel.setForeground(new Color(255, 51, 255));

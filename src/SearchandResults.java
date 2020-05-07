@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.GridBagConstraints;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import java.awt.Insets;
@@ -15,6 +16,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
@@ -243,7 +246,13 @@ public class SearchandResults extends JFrame{
 			gbc_gameLabel.gridy = yOffset;
 			panel_1.add(gameLabel,gbc_gameLabel);
 			
-			ImageIcon icon = new ImageIcon("League.jpg");
+			ImageIcon icon;
+			try {
+				icon = new ImageIcon(ImageIO.read(new URL(g.getPreviewLink())));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				icon = new ImageIcon("League.jpg");
+			}
 			Image image = icon.getImage();
 			Image newimg = image.getScaledInstance(150,150, java.awt.Image.SCALE_SMOOTH);
 			icon = new ImageIcon(newimg);

@@ -1,4 +1,3 @@
-import java.awt.Image;
 import java.io.Serializable;
 import java.util.ArrayList;
 /**
@@ -17,25 +16,25 @@ public class Profile implements Serializable {
 	boolean admin;
 	ArrayList<Game> uploadedGames;
 	String description;
-	Image profilePicture;
+	String profilePictureLink;
 	
 	public Profile(String userName,
 						String password,
 						boolean admin
 						,ArrayList<Game> uploadedGames,
 						String description, 
-						Image profilePicture){
+						String profilePictureLink){
 		
 		setUserName(userName);
 		setPassword(password);
 		setAdmin(admin);
 		setUploadedGames(uploadedGames);
 		setDescription(description);
-		setProfilePicture(profilePicture);
+		setProfilePictureLink(profilePictureLink);
 	}
 	
 	public Profile(String userName, String password){
-		this(userName,password,false,null,"",null);
+		this(userName,password,false,null,"","https://picsum.photos/50/50");
 	}
 	
 	public Profile(){
@@ -43,7 +42,7 @@ public class Profile implements Serializable {
 	}
 	
 	public Profile(Profile p) {
-		this(p.userName, p.password, p.admin, p.uploadedGames, p.description, p.profilePicture);
+		this(p.userName, p.password, p.admin, p.uploadedGames, p.description, p.profilePictureLink);
 	}
 	
 	public void setUserName(String user){
@@ -86,12 +85,12 @@ public class Profile implements Serializable {
 		return description;
 	}
 	
-	private void setProfilePicture(Image profilePicture){
-		this.profilePicture = profilePicture;
+	private void setProfilePictureLink(String profilePicture){
+		this.profilePictureLink = profilePicture;
 	}
 	
-	public Image getProfilePicture(){
-		return profilePicture;
+	public String getProfilePictureLink(){
+		return profilePictureLink;
 	}
 	
 	public boolean login(String userName,String password){
@@ -103,8 +102,8 @@ public class Profile implements Serializable {
 		return true;
 	}
 	
-	public boolean editProfilePicture(Image newPicture){
-		setProfilePicture(newPicture);
+	public boolean editProfilePictureLink(String newLink){
+		setProfilePictureLink(newLink);
 		return true;
 	}
 	
@@ -120,7 +119,6 @@ public class Profile implements Serializable {
 		result = prime * result + (admin ? 1231 : 1237);
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((profilePicture == null) ? 0 : profilePicture.hashCode());
 		result = prime * result + ((uploadedGames == null) ? 0 : uploadedGames.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
@@ -130,9 +128,7 @@ public class Profile implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Profile))
 			return false;
 		Profile other = (Profile) obj;
 		if (admin != other.admin)
@@ -147,11 +143,6 @@ public class Profile implements Serializable {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (profilePicture == null) {
-			if (other.profilePicture != null)
-				return false;
-		} else if (!profilePicture.equals(other.profilePicture))
-			return false;
 		if (uploadedGames == null) {
 			if (other.uploadedGames != null)
 				return false;
@@ -164,4 +155,6 @@ public class Profile implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 }

@@ -4,7 +4,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * A singleton class to store and retrieve Profiles from a backend.
@@ -112,6 +114,36 @@ public class ProfileStorage {
 		}
 		
 		return successful;
+	}
+	
+	/**
+	 * Loads in test profile data from CSV. 
+	 * @param filename the name of the CSV file to load in
+	 * @param destructive whether the old file should be replaced or not
+	 * @return true if the operation is successful, false otherwise.
+	 */
+	public boolean loadFromCSV(String filename, boolean destructive) {
+		checkMapInstantiation();
+		if (destructive)
+			clear();
+		
+		try {
+			Scanner scanner = new Scanner(new File(filename));
+			
+			scanner.nextLine();
+			String line;
+			while (scanner.hasNextLine()) {
+				line = scanner.nextLine();
+				String[] props = line.split(",");
+				
+				storeProfile(new Profile(props[0], props[1], false, new ArrayList<Game>(), props[2], "https://picsum.photos/500/500"));
+			}
+			scanner.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	private void checkMapInstantiation() {

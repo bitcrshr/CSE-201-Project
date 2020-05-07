@@ -16,7 +16,7 @@ public class Game implements Serializable {
 	private double rating;
 	private ArrayList<String> comments;
 	private String description;
-	private ArrayList<String> previews;
+	private String previewLink;
 	private genre g;
 	private platform p;
 	
@@ -25,28 +25,29 @@ public class Game implements Serializable {
 	 */
 	
 	// Workhorse constructor
-	public Game(String name, Profile uploader, double rating, ArrayList<String> comments, String description, ArrayList<String> previews, genre g, platform p) {
+	public Game(String name, Profile uploader, double rating, ArrayList<String> comments, String description, String previewLink, genre g, platform p) {
 		this.name = name;
 		this.uploader = uploader;
 		this.rating = rating;
 		this.comments = comments;
 		this.description = description;
-		this.previews = previews;
+		//this.previews = new ArrayList<String>(previews);
+		this.previewLink = (previewLink == null) ? "https://picsum.photos/50/50" : previewLink;
 		this.g = g;
 		this.p = p;
 	}
 	
 	//Empty constructor
 	public Game() {
-		this("",null,0.0,new ArrayList<String>(),"",new ArrayList<String>(),null,null);
+		this("",null,0.0,new ArrayList<String>(),"","",null,null);
 	}
 	
-	public Game(String name,Profile uploader, String description, ArrayList<String> previews, genre g,platform p) {
-		this(name,uploader, 0.0, null, description, previews,g,p);
+	public Game(String name,Profile uploader, String description, String previewLink, genre g,platform p) {
+		this(name,uploader, 0.0, null, description, previewLink,g,p);
 	}
 	
-	public Game(String name,Profile uploader, String description, ArrayList<String> previews) {
-		this(name,uploader, 0.0, null, description, previews,null,null);
+	public Game(String name,Profile uploader, String description, String previewLink) {
+		this(name,uploader, 0.0, null, description, previewLink,null,null);
 	}
 	
 	public Game(String name,String description,genre g,platform p) {
@@ -105,12 +106,12 @@ public class Game implements Serializable {
 		this.description = description;
 	}
 
-	public ArrayList<String> getPreviews() {
-		return previews;
+	public String getPreviewLink() {
+		return previewLink;
 	}
 
-	public void setPreviews(ArrayList<String> previews) {
-		this.previews = previews;
+	public void setPreviewLink(String previewLink) {
+		this.previewLink = previewLink;
 	}
 
 	public Profile getUploader() {
@@ -142,7 +143,7 @@ public class Game implements Serializable {
 		result = prime * result + ((g == null) ? 0 : g.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((p == null) ? 0 : p.hashCode());
-		result = prime * result + ((previews == null) ? 0 : previews.hashCode());
+		result = prime * result + ((previewLink == null) ? 0 : previewLink.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(rating);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -184,10 +185,10 @@ public class Game implements Serializable {
 				return false;
 		} else if (!p.equals(other.p))
 			return false;
-		if (previews == null) {
-			if (other.previews != null)
+		if (previewLink == null) {
+			if (other.previewLink != null)
 				return false;
-		} else if (!previews.equals(other.previews))
+		} else if (!previewLink.equals(other.previewLink))
 			return false;
 		if (Double.doubleToLongBits(rating) != Double.doubleToLongBits(other.rating))
 			return false;

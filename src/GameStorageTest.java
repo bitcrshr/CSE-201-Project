@@ -11,9 +11,9 @@ class GameStorageTest {
 		3.2,
 		new ArrayList<String>(),
 		"testDescription",
-		new ArrayList<String>(),
-		genre.ALL,
-		platform.ALL
+		"",
+		genre.FPS,
+		platform.WINDOWS
 	);
 	
 	private Game testGame2 = new Game(
@@ -22,9 +22,9 @@ class GameStorageTest {
 			2.8,
 			new ArrayList<String>(),
 			"testDescription2",
-			new ArrayList<String>(),
-			genre.ALL,
-			platform.ALL
+			"",
+			genre.FPS,
+			platform.WINDOWS
 	);
 
 	@Test

@@ -42,16 +42,12 @@ public class ProfileTest {
 		Profile p = new Profile("userName", "password", true, null, "description", null);
 		assertTrue(p.getUserName().equals("userName"));
 		assertTrue(p.getPassword().equals("password"));
-		assertTrue(p.getProfilePicture() == null);
+		assertTrue(p.getProfilePictureLink() == null);
 		
-		try {
-			Image test = ImageIO.read(new File("TestImage.png"));
-			assertTrue(p.editProfilePicture(test));
-			assertFalse(p.getProfilePicture().equals(false));
-			assertTrue(p.getProfilePicture() == test);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		String test = "https://picsum.photos/500/500";
+		assertTrue(p.editProfilePictureLink(test));
+		assertFalse(p.getProfilePictureLink().equals(false));
+		assertTrue(p.getProfilePictureLink() == test);
 	}
 	
 	//Testing for the uploadGame method not yet implemented
